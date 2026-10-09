@@ -1,0 +1,725 @@
+{
+  "generated_at": "2026-10-09T03:06:35.035203+00:00",
+  "seed": 42,
+  "dataset": {
+    "root": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset",
+    "yaml": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/data.yaml",
+    "classes": [
+      "helmet",
+      "no_helmet",
+      "no_vest",
+      "person",
+      "vest"
+    ]
+  },
+  "totals": {
+    "images": 4060,
+    "objects": 30064,
+    "split_share_pct": {
+      "train": 80.0,
+      "val": 10.0,
+      "test": 10.0
+    }
+  },
+  "splits": {
+    "train": {
+      "images_dir": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/train/images",
+      "labels_dir": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/train/labels",
+      "truncated_by_max_images": false,
+      "n_images": 3248,
+      "n_readable": 3248,
+      "n_objects": 24184,
+      "objects_per_class": {
+        "helmet": 4068,
+        "no_helmet": 3993,
+        "no_vest": 4912,
+        "person": 8259,
+        "vest": 2952
+      },
+      "images_per_class": {
+        "helmet": 1870,
+        "no_helmet": 1705,
+        "no_vest": 1998,
+        "person": 3236,
+        "vest": 1556
+      },
+      "corrupt_images": {
+        "count": 0,
+        "examples": []
+      },
+      "images_without_label_file": {
+        "count": 0,
+        "examples": []
+      },
+      "orphan_label_files": {
+        "count": 0,
+        "examples": []
+      },
+      "images_with_empty_label": {
+        "count": 0,
+        "examples": []
+      },
+      "label_issues": {},
+      "resolutions": {
+        "unique": 1,
+        "top": [
+          {
+            "w": 640,
+            "h": 640,
+            "count": 3248
+          }
+        ],
+        "min": [
+          640,
+          640
+        ],
+        "max": [
+          640,
+          640
+        ]
+      },
+      "boxes_per_image": {
+        "mean": 7.445812807881773,
+        "median": 6.0,
+        "p95": 18.0,
+        "max": 187
+      },
+      "bbox_rel_area": {
+        "p0": 2.4414062500000005e-06,
+        "p5": 0.0002933349609375003,
+        "p50": 0.015107421875,
+        "p95": 0.2911103515625,
+        "p100": 0.9643115234374999
+      },
+      "small_objects_pct": 21.733377439629507
+    },
+    "val": {
+      "images_dir": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/valid/images",
+      "labels_dir": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/valid/labels",
+      "truncated_by_max_images": false,
+      "n_images": 406,
+      "n_readable": 406,
+      "n_objects": 3095,
+      "objects_per_class": {
+        "helmet": 531,
+        "no_helmet": 523,
+        "no_vest": 649,
+        "person": 1042,
+        "vest": 350
+      },
+      "images_per_class": {
+        "helmet": 246,
+        "no_helmet": 241,
+        "no_vest": 269,
+        "person": 406,
+        "vest": 215
+      },
+      "corrupt_images": {
+        "count": 0,
+        "examples": []
+      },
+      "images_without_label_file": {
+        "count": 0,
+        "examples": []
+      },
+      "orphan_label_files": {
+        "count": 0,
+        "examples": []
+      },
+      "images_with_empty_label": {
+        "count": 0,
+        "examples": []
+      },
+      "label_issues": {},
+      "resolutions": {
+        "unique": 1,
+        "top": [
+          {
+            "w": 640,
+            "h": 640,
+            "count": 406
+          }
+        ],
+        "min": [
+          640,
+          640
+        ],
+        "max": [
+          640,
+          640
+        ]
+      },
+      "boxes_per_image": {
+        "mean": 7.623152709359606,
+        "median": 6.0,
+        "p95": 18.0,
+        "max": 55
+      },
+      "bbox_rel_area": {
+        "p0": 2.9296875e-05,
+        "p5": 0.0007229003906250002,
+        "p50": 0.0166796875,
+        "p95": 0.2502158203124997,
+        "p100": 0.815185546875
+      },
+      "small_objects_pct": 17.189014539579965
+    },
+    "test": {
+      "images_dir": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/test/images",
+      "labels_dir": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/test/labels",
+      "truncated_by_max_images": false,
+      "n_images": 406,
+      "n_readable": 406,
+      "n_objects": 2785,
+      "objects_per_class": {
+        "helmet": 529,
+        "no_helmet": 393,
+        "no_vest": 513,
+        "person": 954,
+        "vest": 396
+      },
+      "images_per_class": {
+        "helmet": 270,
+        "no_helmet": 204,
+        "no_vest": 222,
+        "person": 405,
+        "vest": 242
+      },
+      "corrupt_images": {
+        "count": 0,
+        "examples": []
+      },
+      "images_without_label_file": {
+        "count": 0,
+        "examples": []
+      },
+      "orphan_label_files": {
+        "count": 0,
+        "examples": []
+      },
+      "images_with_empty_label": {
+        "count": 0,
+        "examples": []
+      },
+      "label_issues": {},
+      "resolutions": {
+        "unique": 1,
+        "top": [
+          {
+            "w": 640,
+            "h": 640,
+            "count": 406
+          }
+        ],
+        "min": [
+          640,
+          640
+        ],
+        "max": [
+          640,
+          640
+        ]
+      },
+      "boxes_per_image": {
+        "mean": 6.859605911330049,
+        "median": 6.0,
+        "p95": 18.0,
+        "max": 63
+      },
+      "bbox_rel_area": {
+        "p0": 7.32421875e-06,
+        "p5": 0.00042529296875000065,
+        "p50": 0.014765625,
+        "p95": 0.23804687499999977,
+        "p100": 0.8946582031249999
+      },
+      "small_objects_pct": 20.179533213644525
+    }
+  },
+  "duplicates": {
+    "exact_duplicate_groups": {
+      "count": 0,
+      "images_involved": 0,
+      "examples": []
+    },
+    "exact_duplicates_across_splits": {
+      "count": 0,
+      "examples": []
+    },
+    "same_source_across_splits_roboflow": {
+      "count": 24,
+      "examples": [
+        [
+          {
+            "split": "train",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/train/images/IMG_3103_mp4-17_jpg.rf.57d57a42d9b7ad5d7924048ceadbfd18.jpg"
+          },
+          {
+            "split": "val",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/valid/images/IMG_3103_mp4-17_jpg.rf.8814292b09546ffc57a02c0e1c657303.jpg"
+          }
+        ],
+        [
+          {
+            "split": "train",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/train/images/KakaoTalk_20221018_001219713_24_jpg.rf.27d3f10c6d9850d588073ccf4b4c8fd6.jpg"
+          },
+          {
+            "split": "val",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/valid/images/KakaoTalk_20221018_001219713_24_jpg.rf.b14a64dacca4695d558bd09d351ce9ee.jpg"
+          }
+        ],
+        [
+          {
+            "split": "train",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/train/images/KakaoTalk_20221018_001312059_02_jpg.rf.dbab7f5d75d1fffe30fe7e749e346e80.jpg"
+          },
+          {
+            "split": "val",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/valid/images/KakaoTalk_20221018_001312059_02_jpg.rf.4f6fd7faea4edd66c3e1e27fbe060c2c.jpg"
+          }
+        ],
+        [
+          {
+            "split": "train",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/train/images/KakaoTalk_20221018_001425789_07_jpg.rf.33020aac7d71e5f534e6684046e61ddf.jpg"
+          },
+          {
+            "split": "val",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/valid/images/KakaoTalk_20221018_001425789_07_jpg.rf.70c84898fe848b4022a4b70909b4f412.jpg"
+          }
+        ],
+        [
+          {
+            "split": "train",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/train/images/KakaoTalk_20221018_001605157_15_jpg.rf.2a018ef235eeee29238f3c166b70abba.jpg"
+          },
+          {
+            "split": "test",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/test/images/KakaoTalk_20221018_001605157_15_jpg.rf.0c2c9b238161f741904b8e001f56cfcf.jpg"
+          }
+        ],
+        [
+          {
+            "split": "train",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/train/images/KakaoTalk_20221018_001836614_12_jpg.rf.2d533e9f622e3eed756753ab598ad8c3.jpg"
+          },
+          {
+            "split": "test",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/test/images/KakaoTalk_20221018_001836614_12_jpg.rf.9cb9981bdbb7d92a6624468faa992417.jpg"
+          }
+        ],
+        [
+          {
+            "split": "train",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/train/images/r107_jpg.rf.8a2f51ca685ffc3bc873accee129d5b1.jpg"
+          },
+          {
+            "split": "val",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/valid/images/r107_jpg.rf.ed3466fed69da2098ba3957eed2522ac.jpg"
+          }
+        ],
+        [
+          {
+            "split": "train",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/train/images/r117_jpg.rf.43d86cbcb9c5b5511c71a3ce9fe1c7f7.jpg"
+          },
+          {
+            "split": "val",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/valid/images/r117_jpg.rf.33a575b8927e44bb3994ba04c73be2d2.jpg"
+          }
+        ],
+        [
+          {
+            "split": "train",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/train/images/r120_jpg.rf.7070c655de0f6ddb5af2f08ac512a77d.jpg"
+          },
+          {
+            "split": "test",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/test/images/r120_jpg.rf.a7d112972029958c71ad9b84c56ae97e.jpg"
+          }
+        ],
+        [
+          {
+            "split": "train",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/train/images/r196_jpg.rf.d1e5dcc4b6497dea29b46cc544fae0de.jpg"
+          },
+          {
+            "split": "test",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/test/images/r196_jpg.rf.41149890ea202477a9f061b7015b3b05.jpg"
+          }
+        ],
+        [
+          {
+            "split": "train",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/train/images/r200_jpg.rf.f0d747105eb1e6bf2be47b2f977828c6.jpg"
+          },
+          {
+            "split": "val",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/valid/images/r200_jpg.rf.dc52c635325a20b71617605250e95072.jpg"
+          }
+        ],
+        [
+          {
+            "split": "train",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/train/images/r215_jpg.rf.a09e0d886db6502c9adb881a5db270f2.jpg"
+          },
+          {
+            "split": "val",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/valid/images/r215_jpg.rf.896824bcebd5a8096100639f2b8b596b.jpg"
+          }
+        ],
+        [
+          {
+            "split": "train",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/train/images/r230_jpg.rf.b0510fd44c3a7aeb754d66d866e6e638.jpg"
+          },
+          {
+            "split": "test",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/test/images/r230_jpg.rf.67ad50e0a15187f835e5c7c9b6385589.jpg"
+          }
+        ],
+        [
+          {
+            "split": "train",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/train/images/r285_jpg.rf.8851424291231159b8f4a689f4eb8856.jpg"
+          },
+          {
+            "split": "test",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/test/images/r285_jpg.rf.00360a002a1f5946cafe7dbe9ec210d2.jpg"
+          }
+        ],
+        [
+          {
+            "split": "train",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/train/images/r287_jpg.rf.c4ea32914a14465b80c64494dfdfda81.jpg"
+          },
+          {
+            "split": "test",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/test/images/r287_jpg.rf.bfc3493c34a7ff31619f2a90f8114fbf.jpg"
+          }
+        ],
+        [
+          {
+            "split": "train",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/train/images/r299_jpg.rf.ad616567ccd39fe79ba0488bc5ed50d9.jpg"
+          },
+          {
+            "split": "test",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/test/images/r299_jpg.rf.1e10a1a5bdfa0e1412b4c58c9c112416.jpg"
+          }
+        ],
+        [
+          {
+            "split": "train",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/train/images/r31_jpg.rf.d3bea349a2931c0576b21a9e85d5693a.jpg"
+          },
+          {
+            "split": "test",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/test/images/r31_jpg.rf.139f859a5ad39935eb47c1b3d0e52fe1.jpg"
+          }
+        ],
+        [
+          {
+            "split": "train",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/train/images/r321_jpg.rf.1b60d609dbd446c7c5c7a1804924bac2.jpg"
+          },
+          {
+            "split": "test",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/test/images/r321_jpg.rf.0be3e28e1b9aa4fb898ad06630a16932.jpg"
+          }
+        ],
+        [
+          {
+            "split": "train",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/train/images/r44_jpg.rf.09e0bf4c70a43a38d972a6eb730e4767.jpg"
+          },
+          {
+            "split": "test",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/test/images/r44_jpg.rf.70fcb8811e9f5bfaa5bae085fced22a3.jpg"
+          }
+        ],
+        [
+          {
+            "split": "train",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/train/images/r51_jpg.rf.0c04a3f4fad4d61eb21c44cd45ee162e.jpg"
+          },
+          {
+            "split": "val",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/valid/images/r51_jpg.rf.11801b841b03fc73dcc1b8533badd698.jpg"
+          }
+        ]
+      ]
+    },
+    "near_duplicates": {
+      "hamming_threshold": 2,
+      "clusters": 88,
+      "images_involved": 222,
+      "clusters_across_splits": 52,
+      "val_test_images_with_train_twin": 72,
+      "examples_across_splits": [
+        [
+          {
+            "split": "train",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/train/images/627_jpg.rf.f411065ad77af956037e41a0e70f65ee.jpg"
+          },
+          {
+            "split": "test",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/test/images/972_jpg.rf.1a2cb0aa0bc4e5ac9c49bd13d220db4b.jpg"
+          }
+        ],
+        [
+          {
+            "split": "train",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/train/images/IMG_0871_MOV-39_jpg.rf.5feef03eb268126b083610d74a25c76c.jpg"
+          },
+          {
+            "split": "test",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/test/images/IMG_0871_mp4-23_jpg.rf.4b5ec3a2f7f769168af9b1978ba540ec.jpg"
+          }
+        ],
+        [
+          {
+            "split": "train",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/train/images/IMG_0871_mp4-13_jpg.rf.6552875a710d718202fe863cb371d406.jpg"
+          },
+          {
+            "split": "train",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/train/images/IMG_0871_mp4-14_jpg.rf.b013b1edfc26d7736de49e9829b03651.jpg"
+          },
+          {
+            "split": "test",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/test/images/IMG_0871_MOV-30_jpg.rf.8ccd666c5079d874af81da227700c3aa.jpg"
+          }
+        ],
+        [
+          {
+            "split": "train",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/train/images/IMG_0871_mp4-5_jpg.rf.ae3e4c26fccf7a2b0bcbde252ef40673.jpg"
+          },
+          {
+            "split": "test",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/test/images/IMG_0871_MOV-12_jpg.rf.624e826cf3a6456c1a76ad19f1dc77ef.jpg"
+          }
+        ],
+        [
+          {
+            "split": "train",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/train/images/IMG_0871_mp4-9_jpg.rf.1636c6c339e310a1107d1ab7c33456c0.jpg"
+          },
+          {
+            "split": "test",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/test/images/IMG_0871_mp4-11_jpg.rf.29a3e15818dc139a0ce17104eafd868c.jpg"
+          }
+        ],
+        [
+          {
+            "split": "train",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/train/images/IMG_2109_PNG_jpg.rf.a839910c4d8727d8ca71406c3bca55e1.jpg"
+          },
+          {
+            "split": "val",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/valid/images/IMG_2111_PNG_jpg.rf.3136b628bdb9262c91d03de1e73a1f20.jpg"
+          }
+        ],
+        [
+          {
+            "split": "train",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/train/images/IMG_2372_PNG_jpg.rf.02709f9806e111bc15cebb46c3958c0e.jpg"
+          },
+          {
+            "split": "val",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/valid/images/IMG_2373_PNG_jpg.rf.b95ee1eb881be409abb0b5ac8d1d6b61.jpg"
+          }
+        ],
+        [
+          {
+            "split": "train",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/train/images/IMG_2384_PNG_jpg.rf.f6170ef320f93262d4a2b9f1d868bb62.jpg"
+          },
+          {
+            "split": "train",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/train/images/IMG_2385_PNG_jpg.rf.acf68cfa72b4ae5feb538e28cf2fac3c.jpg"
+          },
+          {
+            "split": "train",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/train/images/IMG_2386_PNG_jpg.rf.e0e56d668be98ffd8815ee8006e57e7b.jpg"
+          },
+          {
+            "split": "train",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/train/images/IMG_2387_PNG_jpg.rf.bed6243f398e2c32874f36344b9edac4.jpg"
+          },
+          {
+            "split": "val",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/valid/images/IMG_2383_PNG_jpg.rf.95226e3de79415326f495d0ee339f82f.jpg"
+          }
+        ],
+        [
+          {
+            "split": "train",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/train/images/IMG_2564_PNG_jpg.rf.6110661990e7c8647c5de06962e54509.jpg"
+          },
+          {
+            "split": "test",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/test/images/IMG_2563_PNG_jpg.rf.3cb972eeb84c1fc94722cc26dc11509a.jpg"
+          }
+        ],
+        [
+          {
+            "split": "train",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/train/images/IMG_2581_PNG_jpg.rf.1f4f23d03198c348b0a141698c372e00.jpg"
+          },
+          {
+            "split": "test",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/test/images/IMG_2582_PNG_jpg.rf.75306c7d0c01bad56144c54c732c8f33.jpg"
+          }
+        ],
+        [
+          {
+            "split": "train",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/train/images/IMG_2584_PNG_jpg.rf.e5cf0cf4505acdc74a598e7201339524.jpg"
+          },
+          {
+            "split": "test",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/test/images/IMG_2583_PNG_jpg.rf.1e5a64a5e0521e4984ee7261a49e56be.jpg"
+          }
+        ],
+        [
+          {
+            "split": "train",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/train/images/IMG_9949-1-_mp4-24_jpg.rf.a836c96424fab49886474809f855fe6a.jpg"
+          },
+          {
+            "split": "val",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/valid/images/IMG_9949-1-_mp4-20_jpg.rf.b8a4ef9cf4360257ef2ca306dbafaa1b.jpg"
+          }
+        ],
+        [
+          {
+            "split": "train",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/train/images/Video2_167_jpg.rf.904186b8756a98e9c4961a941b3e5369.jpg"
+          },
+          {
+            "split": "train",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/train/images/Video2_171_jpg.rf.28929546921435b1ab02c952892f6fab.jpg"
+          },
+          {
+            "split": "val",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/valid/images/Video2_184_jpg.rf.5b440f0152aba45a154e7283671b68e5.jpg"
+          },
+          {
+            "split": "test",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/test/images/Video2_152_jpg.rf.627a29d358b0172bf3210a982a3f9906.jpg"
+          },
+          {
+            "split": "test",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/test/images/Video2_172_jpg.rf.e1066850ab23fc83942b8770763d556f.jpg"
+          }
+        ],
+        [
+          {
+            "split": "train",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/train/images/Video3_138_jpg.rf.1e8f99cfed8ec76f42922d93ea6aacf6.jpg"
+          },
+          {
+            "split": "test",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/test/images/Video3_133_jpg.rf.f0df8895c9ef735bfa9ed07f847c3073.jpg"
+          }
+        ],
+        [
+          {
+            "split": "train",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/train/images/Video3_161_jpg.rf.2255fcae5f201d7c2f2c7f4da64f7725.jpg"
+          },
+          {
+            "split": "val",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/valid/images/Video3_163_jpg.rf.26f683199b5ecc1c023b518f7057a74a.jpg"
+          }
+        ],
+        [
+          {
+            "split": "train",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/train/images/Video3_25_jpg.rf.3109332f60380109d95fa70263b3fb3c.jpg"
+          },
+          {
+            "split": "test",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/test/images/Video3_24_jpg.rf.cd8c87d71be634d19a7cd520c389e580.jpg"
+          }
+        ],
+        [
+          {
+            "split": "train",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/train/images/Video4_255_jpg.rf.4119754ea9185c517b5b17b430aaab93.jpg"
+          },
+          {
+            "split": "val",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/valid/images/Video4_254_jpg.rf.dad77517024469a474e050b72490040a.jpg"
+          }
+        ],
+        [
+          {
+            "split": "train",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/train/images/Video4_61_jpg.rf.8a0ce7ddcc34799518014167d0178431.jpg"
+          },
+          {
+            "split": "val",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/valid/images/Video4_62_jpg.rf.6ff18786b00cdb6724b5d8af8198221b.jpg"
+          }
+        ],
+        [
+          {
+            "split": "train",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/train/images/image_150_jpg.rf.05c8f5e93af3e1cd98c9fe0ae9da559f.jpg"
+          },
+          {
+            "split": "test",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/test/images/image_154_jpg.rf.c3ed4f468fb757132b46b6c36a02d27f.jpg"
+          }
+        ],
+        [
+          {
+            "split": "train",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/train/images/image_158_jpg.rf.cc17713794ed13d9a14503597462191b.jpg"
+          },
+          {
+            "split": "test",
+            "path": "/home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/test/images/image_157_jpg.rf.04ce65f3d55890911b4b6b1f036c245f.jpg"
+          }
+        ]
+      ]
+    }
+  },
+  "imbalance": {
+    "objects_per_class_total": {
+      "helmet": 5128,
+      "no_helmet": 4909,
+      "no_vest": 6074,
+      "person": 10255,
+      "vest": 3698
+    },
+    "class_share_pct": {
+      "helmet": 17.06,
+      "no_helmet": 16.33,
+      "no_vest": 20.2,
+      "person": 34.11,
+      "vest": 12.3
+    },
+    "max_min_ratio": 2.7731206057328284,
+    "classes_without_objects": []
+  },
+  "parameters": {
+    "root": "src/data/kaggle_dataset",
+    "yaml": null,
+    "names": null,
+    "out": "reports/eda",
+    "seed": 42,
+    "tol": 0.001,
+    "near_dup_threshold": 2,
+    "skip_near_dup": false,
+    "max_images": 0,
+    "samples": 12
+  },
+  "recommendations": [
+    "Posible fuga de información entre particiones: volver a dividir agrupando por imagen fuente."
+  ]
+}

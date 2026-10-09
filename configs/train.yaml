@@ -1,0 +1,60 @@
+# Configuración de entrenamiento YOLOv8n para detección de EPP.
+# Cualquier valor se puede sobrescribir por CLI: --set train.epochs=5 train.batch=8
+
+data:
+  root: data/ppe            # carpeta del dataset descomprimido
+  yaml: null                # ruta al data.yaml; null = buscarlo dentro de root
+  names: null               # lista de clases si el dataset no trae YAML
+  val_fraction_if_missing: 0.15   # si no hay partición de validación, se crea desde train
+
+model:
+  arch: yolov8n
+  weights: yolov8n.pt       # pesos preentrenados en COCO
+
+train:
+  imgsz: 640
+  epochs: 100
+  batch: 16
+  optimizer: AdamW          # auto | SGD | Adam | AdamW
+  lr0: 0.001
+  lrf: 0.01                 # lr final = lr0 * lrf
+  momentum: 0.937
+  weight_decay: 0.0005
+  warmup_epochs: 3
+  patience: 20              # early stopping (épocas sin mejora de fitness)
+  seed: 42
+  deterministic: true
+  workers: 4
+  device: null              # null = automático (GPU si hay); ej. 0 o "cpu"
+  cache: false
+  amp: true
+
+# Aumentos de datos (justificación en el reporte, sección 2.5)
+augment:
+  hsv_h: 0.015              # variación de tono: iluminación/cámaras distintas
+  hsv_s: 0.7
+  hsv_v: 0.4                # variación de brillo: interior/exterior
+  degrees: 0.0              # sin rotación: las cámaras son fijas y la gente va de pie
+  translate: 0.1
+  scale: 0.5                # variación de distancia a la cámara
+  shear: 0.0
+  flipud: 0.0               # nunca volteo vertical (cascos arriba, chalecos al torso)
+  fliplr: 0.5
+  mosaic: 1.0               # ayuda con objetos pequeños (cascos) y escenas variadas
+  mixup: 0.0
+  close_mosaic: 10          # desactiva mosaic en las últimas épocas
+
+output:
+  project: runs/train
+  name: yolov8n
+  models_dir: models        # aquí se copia best_model.pt y model_metadata.json
+  reports_dir: reports/offline
+  model_version: "1.0.0"
+
+eval:
+  conf: 0.001               # umbral bajo para calcular curvas PR/mAP completas
+  iou: 0.6
+
+tracking:
+  mlflow: false             # true requiere `pip install mlflow`
+  experiment: ppe-detection
