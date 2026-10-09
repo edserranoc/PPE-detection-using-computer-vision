@@ -2,9 +2,9 @@
 """Fine-tuning de YOLOv8n para detección de EPP.
 
 Uso:
-    python scripts/train.py --config configs/train.yaml
-    python scripts/train.py --config configs/train.yaml --set train.epochs=2 train.batch=8
-    python scripts/train.py --config configs/train.yaml --dry-run   # sólo prepara y valida datos
+    python src/train.py --config configs/train.yaml
+    python src/train.py --config configs/train.yaml --set train.epochs=2 train.batch=8
+    python src/train.py --config configs/train.yaml --dry-run   # sólo prepara y valida datos
 
 Salidas:
     models/best_model.pt            mejor checkpoint

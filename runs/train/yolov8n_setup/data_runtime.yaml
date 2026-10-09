@@ -1,0 +1,10 @@
+path: /home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset
+names:
+  0: helmet
+  1: no_helmet
+  2: no_vest
+  3: person
+  4: vest
+train: /home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/train/images
+val: /home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/valid/images
+test: /home/usuario/Code/Projects/Computer Vision Projects/PPE-detection-using-computer-vision/src/data/kaggle_dataset/test/images
