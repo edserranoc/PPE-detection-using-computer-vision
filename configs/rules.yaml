@@ -1,0 +1,64 @@
+# Reglas de negocio (ROI, asociación, persistencia, severidad). Separadas del código.
+
+# Rol → nombre de clase en el modelo (dataset Kaggle PPE)
+classes:
+  person: person
+  helmet: helmet
+  no_helmet: no_helmet
+  vest: vest
+  no_vest: no_vest
+
+# Nombres que se escriben en predictions.jsonl (campo class_name). model_class conserva el original.
+output_names:
+  person: persona
+  helmet: casco
+  no_helmet: sin_casco
+  vest: chaleco
+  no_vest: sin_chaleco
+
+decision:
+  # association: falta EPP si no hay casco/chaleco asociado a la persona
+  # explicit:    falta EPP sólo si el modelo detecta no_helmet / no_vest asociado (con más confianza que el positivo)
+  # hybrid:      falta salvo que haya un EPP positivo asociado con confianza >= a la del negativo
+  strategy: hybrid
+
+association:
+  min_ioa: 0.5              # fracción del área del EPP que debe caer dentro de la persona
+  zones:                    # franja vertical (fracción de la altura de la persona, 0 = cabeza)
+    head: [0.0, 0.40]       # casco / no_helmet
+    torso: [0.15, 0.80]     # chaleco / no_vest
+
+roi:
+  enabled: true
+  coordinates: normalized   # normalized (0-1, independiente de la resolución) | pixels
+  reference_point: bottom_center   # pies de la persona
+  default_zones:            # zonas por defecto (toda la imagen). Reemplázalas por tus polígonos.
+    - id: ZONA_1
+      polygon: [[0, 0], [1, 0], [1, 1], [0, 1]]
+  cameras: {}               # ejemplo por cámara:
+  #  CAM_01:
+  #    - id: AREA_OPERATIVA
+  #      polygon: [[0.1, 0.3], [0.9, 0.3], [0.95, 0.95], [0.05, 0.95]]
+
+tracking:                   # sólo input.mode = sequence
+  iou_threshold: 0.3
+  max_age: 5
+
+persistence:
+  sequence:                 # secuencia: la condición debe sostenerse
+    min_frames: 5
+    min_seconds: 1.0
+    max_gap_frames: 2       # tolera parpadeos de la detección
+  independent:              # imagen aislada: no hay dimensión temporal
+    min_frames: 1
+    min_seconds: 0.0
+    max_gap_frames: 0
+
+events:
+  cooldown_seconds: 30      # mismo (fuente, track, tipo) no se repite antes de este tiempo
+  merge_window_seconds: 2.0 # fusiona eventos del mismo tipo si cambia el track_id...
+  merge_iou: 0.5            # ...y las cajas se solapan por encima de este IoU
+  types:                    # condición → tipo de evento y severidad (configurable)
+    sin_chaleco:         {event_type: persona_sin_chaleco,        severity: media}
+    sin_casco:           {event_type: persona_sin_casco,          severity: alta}
+    sin_casco_y_chaleco: {event_type: persona_sin_casco_y_chaleco, severity: critica}

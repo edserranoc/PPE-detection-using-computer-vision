@@ -1,0 +1,589 @@
+{
+  "params": {
+    "iou_threshold": 0.5,
+    "confidence_operating_point": 0.25,
+    "ap_iou_range": [
+      0.5,
+      0.95
+    ]
+  },
+  "scope": {
+    "labeled_images": 406,
+    "scope_defined_by_image_records": true,
+    "gt_objects": 2785,
+    "predictions_in_scope": 2811,
+    "note": "Las métricas sólo cubren las imágenes revisadas; predicciones en otras imágenes se ignoran. mAP usa todas las predicciones guardadas: si la inferencia usó un umbral alto, el mAP queda truncado."
+  },
+  "global": {
+    "micro": {
+      "tp": 2333,
+      "fp": 478,
+      "fn": 452,
+      "precision": 0.83,
+      "recall": 0.8377,
+      "f1": 0.8338
+    },
+    "macro": {
+      "precision": 0.8189,
+      "recall": 0.8329,
+      "f1": 0.8252
+    },
+    "map50": 0.8027,
+    "map50_95": 0.5316
+  },
+  "per_class": {
+    "helmet": {
+      "gt_objects": 529,
+      "predictions": 521,
+      "tp": 449,
+      "fp": 72,
+      "fn": 80,
+      "precision": 0.8618,
+      "recall": 0.8488,
+      "f1": 0.8552,
+      "ap50": 0.8236,
+      "ap50_95": 0.5351
+    },
+    "no_helmet": {
+      "gt_objects": 393,
+      "predictions": 425,
+      "tp": 304,
+      "fp": 121,
+      "fn": 89,
+      "precision": 0.7153,
+      "recall": 0.7735,
+      "f1": 0.7433,
+      "ap50": 0.7249,
+      "ap50_95": 0.418
+    },
+    "no_vest": {
+      "gt_objects": 513,
+      "predictions": 565,
+      "tp": 418,
+      "fp": 147,
+      "fn": 95,
+      "precision": 0.7398,
+      "recall": 0.8148,
+      "f1": 0.7755,
+      "ap50": 0.7665,
+      "ap50_95": 0.4543
+    },
+    "person": {
+      "gt_objects": 954,
+      "predictions": 906,
+      "tp": 817,
+      "fp": 89,
+      "fn": 137,
+      "precision": 0.9018,
+      "recall": 0.8564,
+      "f1": 0.8785,
+      "ap50": 0.838,
+      "ap50_95": 0.6409
+    },
+    "vest": {
+      "gt_objects": 396,
+      "predictions": 394,
+      "tp": 345,
+      "fp": 49,
+      "fn": 51,
+      "precision": 0.8756,
+      "recall": 0.8712,
+      "f1": 0.8734,
+      "ap50": 0.8603,
+      "ap50_95": 0.6096
+    }
+  },
+  "images_without_detections": {
+    "count": 7,
+    "meaning": "imágenes con objetos reales y cero predicciones: cada objeto cuenta como FN",
+    "examples": [
+      "construction-821-_jpg.rf.e8248d47b7b49c2b2c8d0d00cadd861e#0",
+      "image_662_jpg.rf.fb8cebb4609d82dac0c6654d11bc2067#0",
+      "image_937_jpg.rf.8b3bc829491fd61ed5db400e33f8d1f4#0",
+      "pexels-photo-18548763_jpg.rf.a0ee1b20c15ef9ee671328c879a4756a#0",
+      "youtube-152_jpg.rf.0efbc9b827fdf9e78f88e05b3e5686c3#0",
+      "youtube-198_jpg.rf.e66f6a2a1333582745947f9c7749a5b9#0",
+      "youtube-34_jpg.rf.31a049a98e6a1379798b0cdc0081e581#0"
+    ]
+  },
+  "images_with_predictions_but_no_objects": {
+    "count": 0,
+    "meaning": "imágenes sin objetos reales con predicciones: todas son FP",
+    "examples": []
+  },
+  "images_empty_in_both": 0,
+  "annotations_without_prediction": {
+    "count": 452,
+    "by_cause": {
+      "missed_detection": 79,
+      "class_confusion(pred=vest)": 7,
+      "missed_detection+small_object": 211,
+      "localization_error": 83,
+      "class_confusion(pred=no_helmet)+small_object": 10,
+      "class_confusion(pred=helmet)+small_object": 11,
+      "class_confusion(pred=person)": 5,
+      "class_confusion(pred=no_vest)+small_object": 2,
+      "localization_error+small_object": 23,
+      "class_confusion(pred=no_vest)": 12,
+      "class_confusion(pred=no_helmet)": 3,
+      "class_confusion(pred=helmet)": 6
+    },
+    "examples": [
+      {
+        "type": "FN",
+        "source_id": "000005_jpg.rf.fc2bef6376749917a57f4b270c64fa96",
+        "frame_id": 0,
+        "class": "no_vest",
+        "bbox": {
+          "x1": 480.5,
+          "y1": 298.5,
+          "x2": 639.5,
+          "y2": 441.5
+        },
+        "best_iou_same_class": 0.0,
+        "cause": "missed_detection",
+        "image_file": "000005_jpg.rf.fc2bef6376749917a57f4b270c64fa96.jpg"
+      },
+      {
+        "type": "FN",
+        "source_id": "000005_jpg.rf.fc2bef6376749917a57f4b270c64fa96",
+        "frame_id": 0,
+        "class": "no_vest",
+        "bbox": {
+          "x1": 0.0,
+          "y1": 308.5,
+          "x2": 132.0,
+          "y2": 465.5
+        },
+        "best_iou_same_class": 0.0,
+        "cause": "missed_detection",
+        "image_file": "000005_jpg.rf.fc2bef6376749917a57f4b270c64fa96.jpg"
+      },
+      {
+        "type": "FN",
+        "source_id": "000005_jpg.rf.fc2bef6376749917a57f4b270c64fa96",
+        "frame_id": 0,
+        "class": "person",
+        "bbox": {
+          "x1": 288.0,
+          "y1": 180.5,
+          "x2": 640.0,
+          "y2": 447.5
+        },
+        "best_iou_same_class": 0.0,
+        "cause": "missed_detection",
+        "image_file": "000005_jpg.rf.fc2bef6376749917a57f4b270c64fa96.jpg"
+      },
+      {
+        "type": "FN",
+        "source_id": "000010_jpg.rf.364564a48732cc7d3689f88cd1281a5b",
+        "frame_id": 0,
+        "class": "no_vest",
+        "bbox": {
+          "x1": 411.0,
+          "y1": 109.0,
+          "x2": 501.0,
+          "y2": 259.0
+        },
+        "best_iou_same_class": 0.0,
+        "cause": "class_confusion(pred=vest)",
+        "image_file": "000010_jpg.rf.364564a48732cc7d3689f88cd1281a5b.jpg"
+      },
+      {
+        "type": "FN",
+        "source_id": "000103_jpg.rf.5d253de077a436003ed4259ec418f85d",
+        "frame_id": 0,
+        "class": "helmet",
+        "bbox": {
+          "x1": 261.0,
+          "y1": 108.5,
+          "x2": 287.0,
+          "y2": 135.5
+        },
+        "best_iou_same_class": 0.037,
+        "cause": "missed_detection+small_object",
+        "image_file": "000103_jpg.rf.5d253de077a436003ed4259ec418f85d.jpg"
+      },
+      {
+        "type": "FN",
+        "source_id": "000103_jpg.rf.5d253de077a436003ed4259ec418f85d",
+        "frame_id": 0,
+        "class": "no_vest",
+        "bbox": {
+          "x1": 251.5,
+          "y1": 159.0,
+          "x2": 308.5,
+          "y2": 261.0
+        },
+        "best_iou_same_class": 0.233,
+        "cause": "localization_error",
+        "image_file": "000103_jpg.rf.5d253de077a436003ed4259ec418f85d.jpg"
+      },
+      {
+        "type": "FN",
+        "source_id": "000103_jpg.rf.5d253de077a436003ed4259ec418f85d",
+        "frame_id": 0,
+        "class": "person",
+        "bbox": {
+          "x1": 241.0,
+          "y1": 112.5,
+          "x2": 307.0,
+          "y2": 377.5
+        },
+        "best_iou_same_class": 0.245,
+        "cause": "localization_error",
+        "image_file": "000103_jpg.rf.5d253de077a436003ed4259ec418f85d.jpg"
+      },
+      {
+        "type": "FN",
+        "source_id": "000111_jpg.rf.cabc7dc6bad823352aeda95ac917bf1f",
+        "frame_id": 0,
+        "class": "helmet",
+        "bbox": {
+          "x1": 308.0,
+          "y1": 256.0,
+          "x2": 332.0,
+          "y2": 280.0
+        },
+        "best_iou_same_class": 0.0,
+        "cause": "class_confusion(pred=no_helmet)+small_object",
+        "image_file": "000111_jpg.rf.cabc7dc6bad823352aeda95ac917bf1f.jpg"
+      },
+      {
+        "type": "FN",
+        "source_id": "000111_jpg.rf.cabc7dc6bad823352aeda95ac917bf1f",
+        "frame_id": 0,
+        "class": "helmet",
+        "bbox": {
+          "x1": 255.5,
+          "y1": 361.5,
+          "x2": 270.5,
+          "y2": 386.5
+        },
+        "best_iou_same_class": 0.0,
+        "cause": "missed_detection+small_object",
+        "image_file": "000111_jpg.rf.cabc7dc6bad823352aeda95ac917bf1f.jpg"
+      },
+      {
+        "type": "FN",
+        "source_id": "000111_jpg.rf.cabc7dc6bad823352aeda95ac917bf1f",
+        "frame_id": 0,
+        "class": "helmet",
+        "bbox": {
+          "x1": 102.0,
+          "y1": 515.0,
+          "x2": 126.0,
+          "y2": 539.0
+        },
+        "best_iou_same_class": 0.0,
+        "cause": "class_confusion(pred=no_helmet)+small_object",
+        "image_file": "000111_jpg.rf.cabc7dc6bad823352aeda95ac917bf1f.jpg"
+      },
+      {
+        "type": "FN",
+        "source_id": "000111_jpg.rf.cabc7dc6bad823352aeda95ac917bf1f",
+        "frame_id": 0,
+        "class": "helmet",
+        "bbox": {
+          "x1": 444.5,
+          "y1": 129.5,
+          "x2": 467.5,
+          "y2": 154.5
+        },
+        "best_iou_same_class": 0.0,
+        "cause": "class_confusion(pred=no_helmet)+small_object",
+        "image_file": "000111_jpg.rf.cabc7dc6bad823352aeda95ac917bf1f.jpg"
+      },
+      {
+        "type": "FN",
+        "source_id": "000111_jpg.rf.cabc7dc6bad823352aeda95ac917bf1f",
+        "frame_id": 0,
+        "class": "helmet",
+        "bbox": {
+          "x1": 531.0,
+          "y1": 97.0,
+          "x2": 549.0,
+          "y2": 111.0
+        },
+        "best_iou_same_class": 0.0,
+        "cause": "class_confusion(pred=no_helmet)+small_object",
+        "image_file": "000111_jpg.rf.cabc7dc6bad823352aeda95ac917bf1f.jpg"
+      },
+      {
+        "type": "FN",
+        "source_id": "000111_jpg.rf.cabc7dc6bad823352aeda95ac917bf1f",
+        "frame_id": 0,
+        "class": "no_vest",
+        "bbox": {
+          "x1": 118.5,
+          "y1": 526.5,
+          "x2": 149.5,
+          "y2": 619.5
+        },
+        "best_iou_same_class": 0.467,
+        "cause": "localization_error",
+        "image_file": "000111_jpg.rf.cabc7dc6bad823352aeda95ac917bf1f.jpg"
+      },
+      {
+        "type": "FN",
+        "source_id": "000111_jpg.rf.cabc7dc6bad823352aeda95ac917bf1f",
+        "frame_id": 0,
+        "class": "no_vest",
+        "bbox": {
+          "x1": 456.5,
+          "y1": 141.0,
+          "x2": 487.5,
+          "y2": 221.0
+        },
+        "best_iou_same_class": 0.472,
+        "cause": "localization_error",
+        "image_file": "000111_jpg.rf.cabc7dc6bad823352aeda95ac917bf1f.jpg"
+      },
+      {
+        "type": "FN",
+        "source_id": "000659_jpg.rf.150c8c09d04d362dc837f492e818bb54",
+        "frame_id": 0,
+        "class": "no_vest",
+        "bbox": {
+          "x1": 291.0,
+          "y1": 291.5,
+          "x2": 345.0,
+          "y2": 514.5
+        },
+        "best_iou_same_class": 0.229,
+        "cause": "localization_error",
+        "image_file": "000659_jpg.rf.150c8c09d04d362dc837f492e818bb54.jpg"
+      },
+      {
+        "type": "FN",
+        "source_id": "000659_jpg.rf.150c8c09d04d362dc837f492e818bb54",
+        "frame_id": 0,
+        "class": "no_vest",
+        "bbox": {
+          "x1": 339.5,
+          "y1": 217.5,
+          "x2": 424.5,
+          "y2": 560.5
+        },
+        "best_iou_same_class": 0.499,
+        "cause": "localization_error",
+        "image_file": "000659_jpg.rf.150c8c09d04d362dc837f492e818bb54.jpg"
+      },
+      {
+        "type": "FN",
+        "source_id": "000707_jpg.rf.d712674a04dbcb8da9ded5c70bfb2c9f",
+        "frame_id": 0,
+        "class": "no_vest",
+        "bbox": {
+          "x1": 151.5,
+          "y1": 376.0,
+          "x2": 330.5,
+          "y2": 640.0
+        },
+        "best_iou_same_class": 0.0,
+        "cause": "class_confusion(pred=vest)",
+        "image_file": "000707_jpg.rf.d712674a04dbcb8da9ded5c70bfb2c9f.jpg"
+      },
+      {
+        "type": "FN",
+        "source_id": "001187_jpg.rf.2b85dd8cb510fe8afeb72f78b5ec92ce",
+        "frame_id": 0,
+        "class": "helmet",
+        "bbox": {
+          "x1": 294.0,
+          "y1": 183.0,
+          "x2": 348.0,
+          "y2": 233.0
+        },
+        "best_iou_same_class": 0.236,
+        "cause": "localization_error",
+        "image_file": "001187_jpg.rf.2b85dd8cb510fe8afeb72f78b5ec92ce.jpg"
+      },
+      {
+        "type": "FN",
+        "source_id": "001281_jpg.rf.c81aac36011d8d8f788ad5200a16d88c",
+        "frame_id": 0,
+        "class": "person",
+        "bbox": {
+          "x1": 163.0,
+          "y1": 200.5,
+          "x2": 265.0,
+          "y2": 639.5
+        },
+        "best_iou_same_class": 0.436,
+        "cause": "localization_error",
+        "image_file": "001281_jpg.rf.c81aac36011d8d8f788ad5200a16d88c.jpg"
+      },
+      {
+        "type": "FN",
+        "source_id": "001281_jpg.rf.c81aac36011d8d8f788ad5200a16d88c",
+        "frame_id": 0,
+        "class": "person",
+        "bbox": {
+          "x1": 223.5,
+          "y1": 197.5,
+          "x2": 252.5,
+          "y2": 250.5
+        },
+        "best_iou_same_class": 0.016,
+        "cause": "missed_detection",
+        "image_file": "001281_jpg.rf.c81aac36011d8d8f788ad5200a16d88c.jpg"
+      },
+      {
+        "type": "FN",
+        "source_id": "001800_jpg.rf.3bb4ba5ae6f71a034fd68d5362d4c90a",
+        "frame_id": 0,
+        "class": "no_vest",
+        "bbox": {
+          "x1": 133.0,
+          "y1": 208.0,
+          "x2": 199.0,
+          "y2": 356.0
+        },
+        "best_iou_same_class": 0.127,
+        "cause": "localization_error",
+        "image_file": "001800_jpg.rf.3bb4ba5ae6f71a034fd68d5362d4c90a.jpg"
+      },
+      {
+        "type": "FN",
+        "source_id": "001800_jpg.rf.3bb4ba5ae6f71a034fd68d5362d4c90a",
+        "frame_id": 0,
+        "class": "no_vest",
+        "bbox": {
+          "x1": 286.0,
+          "y1": 285.5,
+          "x2": 406.0,
+          "y2": 586.5
+        },
+        "best_iou_same_class": 0.0,
+        "cause": "missed_detection",
+        "image_file": "001800_jpg.rf.3bb4ba5ae6f71a034fd68d5362d4c90a.jpg"
+      },
+      {
+        "type": "FN",
+        "source_id": "001800_jpg.rf.3bb4ba5ae6f71a034fd68d5362d4c90a",
+        "frame_id": 0,
+        "class": "person",
+        "bbox": {
+          "x1": 241.0,
+          "y1": 212.5,
+          "x2": 411.0,
+          "y2": 639.5
+        },
+        "best_iou_same_class": 0.178,
+        "cause": "localization_error",
+        "image_file": "001800_jpg.rf.3bb4ba5ae6f71a034fd68d5362d4c90a.jpg"
+      },
+      {
+        "type": "FN",
+        "source_id": "001951_jpg.rf.e66c247b4d47d80d4d916610ff4877f8",
+        "frame_id": 0,
+        "class": "no_vest",
+        "bbox": {
+          "x1": 393.5,
+          "y1": 182.5,
+          "x2": 558.5,
+          "y2": 423.5
+        },
+        "best_iou_same_class": 0.18,
+        "cause": "localization_error",
+        "image_file": "001951_jpg.rf.e66c247b4d47d80d4d916610ff4877f8.jpg"
+      },
+      {
+        "type": "FN",
+        "source_id": "001963_jpg.rf.50a3e17ab149bbbf196aa5b103166994",
+        "frame_id": 0,
+        "class": "helmet",
+        "bbox": {
+          "x1": 83.0,
+          "y1": 250.0,
+          "x2": 155.0,
+          "y2": 334.0
+        },
+        "best_iou_same_class": 0.44,
+        "cause": "localization_error",
+        "image_file": "001963_jpg.rf.50a3e17ab149bbbf196aa5b103166994.jpg"
+      }
+    ]
+  },
+  "false_positive_causes": {
+    "class_confusion(gt=vest)": 25,
+    "duplicate_detection": 87,
+    "class_confusion(gt=helmet)": 19,
+    "false_alarm_background": 170,
+    "class_confusion(gt=no_vest)": 19,
+    "localization_error": 124,
+    "class_confusion(gt=no_helmet)": 27,
+    "class_confusion(gt=person)": 7
+  },
+  "confusion_matrix": {
+    "labels": [
+      "helmet",
+      "no_helmet",
+      "no_vest",
+      "person",
+      "vest",
+      "background"
+    ],
+    "rows": "real",
+    "columns": "predicho",
+    "matrix": [
+      [
+        448,
+        12,
+        0,
+        2,
+        0,
+        67
+      ],
+      [
+        22,
+        299,
+        1,
+        0,
+        0,
+        71
+      ],
+      [
+        0,
+        0,
+        411,
+        4,
+        12,
+        86
+      ],
+      [
+        0,
+        2,
+        4,
+        815,
+        1,
+        132
+      ],
+      [
+        0,
+        0,
+        16,
+        0,
+        341,
+        39
+      ],
+      [
+        51,
+        112,
+        133,
+        85,
+        40,
+        0
+      ]
+    ]
+  },
+  "input_files": {
+    "predictions": "outputs/latest/predictions.jsonl",
+    "ground_truth": "data/ground_truth/ground_truth.jsonl",
+    "invalid_lines": {
+      "predictions": 0,
+      "ground_truth": 0
+    }
+  }
+}

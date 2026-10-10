@@ -1,0 +1,118 @@
+inference:
+  seed: 42
+  model:
+    weights: models/best_model.pt
+    version: 1.0.0
+    imgsz: 640
+    device: null
+    max_det: 300
+  input:
+    mode: independent
+    camera_id: CAM_01
+    fps: 1.0
+    source_id: null
+    recursive: true
+    extensions:
+    - .jpg
+    - .jpeg
+    - .png
+    - .bmp
+    - .webp
+    min_side: 16
+  preprocessing:
+    resize_mode: letterbox
+    pad_value: 114
+  thresholds:
+    conf_default: 0.25
+    per_class:
+      person: 0.35
+    model_nms_iou: 0.7
+    dedup_iou: 0.8
+  output:
+    dir: outputs
+    mirror_latest: true
+    save_annotated: false
+    annotate: events
+rules:
+  classes:
+    person: person
+    helmet: helmet
+    no_helmet: no_helmet
+    vest: vest
+    no_vest: no_vest
+  output_names:
+    person: persona
+    helmet: casco
+    no_helmet: sin_casco
+    vest: chaleco
+    no_vest: sin_chaleco
+  decision:
+    strategy: hybrid
+  association:
+    min_ioa: 0.5
+    zones:
+      head:
+      - 0.0
+      - 0.4
+      torso:
+      - 0.15
+      - 0.8
+  roi:
+    enabled: true
+    coordinates: normalized
+    reference_point: bottom_center
+    default_zones:
+    - id: ZONA_1
+      polygon:
+      - - 0
+        - 0
+      - - 1
+        - 0
+      - - 1
+        - 1
+      - - 0
+        - 1
+    cameras: {}
+  tracking:
+    iou_threshold: 0.3
+    max_age: 5
+  persistence:
+    sequence:
+      min_frames: 5
+      min_seconds: 1.0
+      max_gap_frames: 2
+    independent:
+      min_frames: 1
+      min_seconds: 0.0
+      max_gap_frames: 0
+  events:
+    cooldown_seconds: 30
+    merge_window_seconds: 2.0
+    merge_iou: 0.5
+    types:
+      sin_chaleco:
+        event_type: persona_sin_chaleco
+        severity: media
+      sin_casco:
+        event_type: persona_sin_casco
+        severity: alta
+      sin_casco_y_chaleco:
+        event_type: persona_sin_casco_y_chaleco
+        severity: critica
+config_hash: 6bb983afa7e19a6739d08319b4f90f8751099678edc102c04b2163f32e3cb211
+cli:
+  source: src/data/kaggle_dataset/test/images
+  config: configs/inference.yaml
+  rules: configs/rules.yaml
+  weights: null
+  output: null
+  mode: null
+  camera_id: null
+  fps: null
+  conf: null
+  imgsz: null
+  resize_mode: null
+  device: null
+  save_annotated: false
+  set: []
+  set_rules: []

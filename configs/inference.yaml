@@ -1,0 +1,41 @@
+# Configuración del pipeline de inferencia (scripts/inference.py).
+# Sobrescribe valores por CLI: --set thresholds.conf_default=0.4 preprocessing.resize_mode=resize
+
+seed: 42
+
+model:
+  weights: models/best_model.pt
+  version: "1.0.0"          # se escribe en cada predicción y evento
+  imgsz: 640                # tamaño con el que se entrenó (configs/train.yaml)
+  device: null              # null = automático; 0 = primera GPU; "cpu"
+  max_det: 300
+
+input:
+  mode: independent         # independent: cada imagen es un caso aislado (sin tracking)
+                            # sequence:    la carpeta es una secuencia ordenada de frames de una cámara
+  camera_id: CAM_01
+  fps: 1.0                  # sólo modo sequence: frames por segundo de la secuencia (timestamp = frame/fps)
+  source_id: null           # sólo modo sequence con una carpeta: nombre de la fuente (por defecto, nombre de carpeta)
+  recursive: true
+  extensions: [".jpg", ".jpeg", ".png", ".bmp", ".webp"]
+  min_side: 16              # imágenes con un lado menor se rechazan como inválidas
+
+# Adaptación de resolución para imágenes distintas a las de entrenamiento
+preprocessing:
+  resize_mode: letterbox    # letterbox: conserva proporción y añade bordes (recomendado)
+                            # resize:    estira a imgsz x imgsz (distorsiona)
+                            # none:      sin preprocesado propio (Ultralytics hace su letterbox interno)
+  pad_value: 114
+
+thresholds:
+  conf_default: 0.25        # umbral de operación por defecto
+  per_class:                # umbral específico por clase (nombre de clase del modelo)
+    person: 0.35
+  model_nms_iou: 0.7        # NMS interno del modelo
+  dedup_iou: 0.8            # control extra de detecciones duplicadas de la misma clase
+
+output:
+  dir: outputs              # cada corrida crea outputs/<run_id>/
+  mirror_latest: true       # copia los resultados a outputs/latest/
+  save_annotated: false     # guarda imágenes anotadas
+  annotate: events          # events = sólo imágenes con evento | all

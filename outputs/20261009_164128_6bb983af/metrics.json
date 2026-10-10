@@ -1,0 +1,417 @@
+{
+  "schema_version": "1.0",
+  "volume": {
+    "files_found": 406,
+    "files_processed": 406,
+    "files_failed": 0,
+    "videos": 0,
+    "frames": 406,
+    "detections": 2811,
+    "events": 655
+  },
+  "performance": {
+    "total_seconds": 33.784,
+    "mean_ms_per_frame": 83.03,
+    "mean_inference_ms": 78.18,
+    "p95_inference_ms": 14.57,
+    "mean_read_preprocess_ms": 4.3,
+    "fps_end_to_end": 12.02,
+    "fps_inference_only": 12.79,
+    "failed_files": [],
+    "interrupted": false
+  },
+  "quality": {
+    "confidence_by_class": {
+      "helmet": {
+        "count": 521,
+        "mean": 0.6879,
+        "min": 0.2503,
+        "p10": 0.4038,
+        "p50": 0.7365,
+        "p90": 0.8743,
+        "max": 0.9286
+      },
+      "no_helmet": {
+        "count": 425,
+        "mean": 0.5931,
+        "min": 0.2529,
+        "p10": 0.3053,
+        "p50": 0.6281,
+        "p90": 0.8248,
+        "max": 0.9556
+      },
+      "no_vest": {
+        "count": 565,
+        "mean": 0.6036,
+        "min": 0.2509,
+        "p10": 0.3394,
+        "p50": 0.6326,
+        "p90": 0.8094,
+        "max": 0.9889
+      },
+      "person": {
+        "count": 906,
+        "mean": 0.7684,
+        "min": 0.3523,
+        "p10": 0.5275,
+        "p50": 0.8172,
+        "p90": 0.9038,
+        "max": 0.9789
+      },
+      "vest": {
+        "count": 394,
+        "mean": 0.7391,
+        "min": 0.2511,
+        "p10": 0.429,
+        "p50": 0.8033,
+        "p90": 0.9042,
+        "max": 0.9632
+      }
+    },
+    "class_distribution": {
+      "helmet": {
+        "count": 521,
+        "pct": 18.53
+      },
+      "no_helmet": {
+        "count": 425,
+        "pct": 15.12
+      },
+      "no_vest": {
+        "count": 565,
+        "pct": 20.1
+      },
+      "person": {
+        "count": 906,
+        "pct": 32.23
+      },
+      "vest": {
+        "count": 394,
+        "pct": 14.02
+      }
+    },
+    "discarded": {
+      "below_threshold": 76,
+      "duplicate_detections_nms": 0
+    },
+    "images_without_detections": 7,
+    "events_suppressed_as_duplicates": {
+      "suppressed_track_switch": 10
+    },
+    "event_latency_seconds": {
+      "count": 655,
+      "mean": 0.0,
+      "min": 0.0,
+      "p10": 0.0,
+      "p50": 0.0,
+      "p90": 0.0,
+      "max": 0.0
+    },
+    "input_resolutions": {
+      "640x640": 406
+    }
+  },
+  "segmentation": {
+    "by_class": {
+      "person": 906,
+      "vest": 394,
+      "no_vest": 565,
+      "no_helmet": 425,
+      "helmet": 521
+    },
+    "by_camera": {
+      "CAM_01": {
+        "frames": 406,
+        "detections": 2811,
+        "events": 655
+      }
+    },
+    "by_source": {
+      "IMG_5846_jpg.rf.ea8c7eabbc61de5b74ae7bb4fc51870e": {
+        "frames": 1,
+        "detections": 64,
+        "events": 10
+      },
+      "pos_1221_jpg.rf.0ab3ca84486f26ff6c4e81566e858ef9": {
+        "frames": 1,
+        "detections": 44,
+        "events": 11
+      },
+      "thumbnail-ba5c72edb320b49a69e86b05775c49b2-scaled-1_jpeg_jpg.rf.b37d66328fbbd57981fdf8ca7883db9f": {
+        "frames": 1,
+        "detections": 33,
+        "events": 7
+      },
+      "006463_jpg.rf.54f788c95e6ecba25f010a1ad84aafab": {
+        "frames": 1,
+        "detections": 27,
+        "events": 9
+      },
+      "Image_11_jpg.rf.e3cba4b1ac409befd58dffad3d79e26a": {
+        "frames": 1,
+        "detections": 27,
+        "events": 5
+      },
+      "image_from_china-2566-_jpg.rf.b744a5b09decb0b4ff7242fa6514ff78": {
+        "frames": 1,
+        "detections": 27,
+        "events": 9
+      },
+      "image_from_china-792-_jpg.rf.1d58056391ab7faf1e4c19f01cfbdf71": {
+        "frames": 1,
+        "detections": 26,
+        "events": 10
+      },
+      "image_from_china-2149-_jpg.rf.68f98fc4d9f4d64c58c88103e1cf8bd3": {
+        "frames": 1,
+        "detections": 25,
+        "events": 8
+      },
+      "r31_jpg.rf.139f859a5ad39935eb47c1b3d0e52fe1": {
+        "frames": 1,
+        "detections": 24,
+        "events": 8
+      },
+      "001963_jpg.rf.50a3e17ab149bbbf196aa5b103166994": {
+        "frames": 1,
+        "detections": 23,
+        "events": 2
+      },
+      "ppe_0665_jpg.rf.e37b7d487c9ad8b22d7d08413dec95b9": {
+        "frames": 1,
+        "detections": 23,
+        "events": 4
+      },
+      "pexels-photo-14038976_jpg.rf.3961245de1d8a5f2ff7c6d8c826721c5": {
+        "frames": 1,
+        "detections": 22,
+        "events": 6
+      },
+      "ppe_1073_jpg.rf.4a757d52022b5ebde1a33594bcfb92c8": {
+        "frames": 1,
+        "detections": 22,
+        "events": 3
+      },
+      "pos_1208_jpg.rf.1f7845162a17f0d1069d86e5b4f4e3ea": {
+        "frames": 1,
+        "detections": 21,
+        "events": 2
+      },
+      "63_jpg.rf.837e5806e3e08682ce56aac923870019": {
+        "frames": 1,
+        "detections": 20,
+        "events": 6
+      },
+      "image_from_china-1600-_jpg.rf.25b3bf8878f130f2abab6afcc8be1f38": {
+        "frames": 1,
+        "detections": 20,
+        "events": 6
+      },
+      "IMG_2239_PNG_jpg.rf.4ce57e0c2451eecaade0d60dd94234db": {
+        "frames": 1,
+        "detections": 20,
+        "events": 6
+      },
+      "IMG_2440_PNG_jpg.rf.209567c6100061384e19eec846e25238": {
+        "frames": 1,
+        "detections": 20,
+        "events": 6
+      },
+      "006672_jpg.rf.267adc307dcc18976c721f14e668f4d8": {
+        "frames": 1,
+        "detections": 19,
+        "events": 0
+      },
+      "IMG_2206_PNG_jpg.rf.bc9fff10de5115d474c8a9b54f6cfd40": {
+        "frames": 1,
+        "detections": 19,
+        "events": 4
+      },
+      "Image36_jpg.rf.1d90881dcbef1d1085f20cd1f95a773b": {
+        "frames": 1,
+        "detections": 18,
+        "events": 5
+      },
+      "IMG_2291_PNG_jpg.rf.691242b510033deae24bd67903db817c": {
+        "frames": 1,
+        "detections": 18,
+        "events": 6
+      },
+      "02044_jpg.rf.56227843caebad93fc3e9a55b2905e72": {
+        "frames": 1,
+        "detections": 17,
+        "events": 2
+      },
+      "pos_2115_jpg.rf.3597d3ec23fcf2197a9e009aa79a0962": {
+        "frames": 1,
+        "detections": 17,
+        "events": 6
+      },
+      "r299_jpg.rf.1e10a1a5bdfa0e1412b4c58c9c112416": {
+        "frames": 1,
+        "detections": 17,
+        "events": 5
+      },
+      "000010_jpg.rf.364564a48732cc7d3689f88cd1281a5b": {
+        "frames": 1,
+        "detections": 16,
+        "events": 1
+      },
+      "000111_jpg.rf.cabc7dc6bad823352aeda95ac917bf1f": {
+        "frames": 1,
+        "detections": 16,
+        "events": 5
+      },
+      "147_jpg.rf.b364ea4666fd9207c840477ed05052ce": {
+        "frames": 1,
+        "detections": 16,
+        "events": 4
+      },
+      "001187_jpg.rf.2b85dd8cb510fe8afeb72f78b5ec92ce": {
+        "frames": 1,
+        "detections": 16,
+        "events": 5
+      },
+      "004063_jpg.rf.74ed75bae4019b1d0b37d02a5453169b": {
+        "frames": 1,
+        "detections": 16,
+        "events": 5
+      },
+      "IMG_2412_PNG_jpg.rf.48c8ef66999d98d3228669ea878ef95d": {
+        "frames": 1,
+        "detections": 16,
+        "events": 5
+      },
+      "IMG_2426_PNG_jpg.rf.1c833a4f22d10f689d3454d4f4a03219": {
+        "frames": 1,
+        "detections": 16,
+        "events": 4
+      },
+      "172_jpg.rf.603239c49cc78b01feec6156af0153d4": {
+        "frames": 1,
+        "detections": 15,
+        "events": 4
+      },
+      "001597_jpg.rf.79e3484a41f8fc933c28bee560594e16": {
+        "frames": 1,
+        "detections": 15,
+        "events": 5
+      },
+      "001800_jpg.rf.3bb4ba5ae6f71a034fd68d5362d4c90a": {
+        "frames": 1,
+        "detections": 15,
+        "events": 3
+      },
+      "005239_jpg.rf.0e7d4e56023f315c9a6f2d01db828b48": {
+        "frames": 1,
+        "detections": 15,
+        "events": 5
+      },
+      "IMG_2106_PNG_jpg.rf.1536474a9c9f90d6ce94f311c76b6c0d": {
+        "frames": 1,
+        "detections": 15,
+        "events": 5
+      },
+      "IMG_2186_PNG_jpg.rf.c3256306b6d8dc9acb0a86e546bd277f": {
+        "frames": 1,
+        "detections": 15,
+        "events": 5
+      },
+      "IMG_2238_PNG_jpg.rf.f25748c013cd6a166e3921af70bf7fb4": {
+        "frames": 1,
+        "detections": 15,
+        "events": 4
+      },
+      "pos_2069_jpg.rf.098aefacbfcbe1a59ed08049312e8c2d": {
+        "frames": 1,
+        "detections": 15,
+        "events": 5
+      },
+      "ppe_0648_jpg.rf.609b4e35c30c7b0373ca31c71f78752f": {
+        "frames": 1,
+        "detections": 15,
+        "events": 0
+      },
+      "000003_jpg.rf.2c3fe5f104654f46f367b041f5e42814": {
+        "frames": 1,
+        "detections": 14,
+        "events": 4
+      },
+      "000659_jpg.rf.150c8c09d04d362dc837f492e818bb54": {
+        "frames": 1,
+        "detections": 14,
+        "events": 4
+      },
+      "pexels-photo-6780198_jpg.rf.d5f524a4f59ca8dd61842cdfaf0ee950": {
+        "frames": 1,
+        "detections": 14,
+        "events": 6
+      },
+      "image_from_china-578-_jpg.rf.e54e5aad123c97fe7633a158f21d3fcd": {
+        "frames": 1,
+        "detections": 13,
+        "events": 4
+      },
+      "IMG_1715_PNG_jpg.rf.96513dfd0ec987b361ada331f1a20109": {
+        "frames": 1,
+        "detections": 13,
+        "events": 4
+      },
+      "IMG_2483_PNG_jpg.rf.c49df934b69bac89f515a2c5d20a9006": {
+        "frames": 1,
+        "detections": 13,
+        "events": 4
+      },
+      "z4987255697977_fa285c30efda13bda1040a330f6c4ec7_jpg.rf.309464affb775f6fac986e5c82256185": {
+        "frames": 1,
+        "detections": 13,
+        "events": 4
+      },
+      "00596_jpg.rf.5219ce448ff1da6163b5487138d1fdc3": {
+        "frames": 1,
+        "detections": 12,
+        "events": 4
+      },
+      "02404_jpg.rf.0c46506ff0a79c8ee81051d5a1c21d33": {
+        "frames": 1,
+        "detections": 12,
+        "events": 2
+      }
+    },
+    "n_sources": 406,
+    "by_event_type": {
+      "persona_sin_casco": 117,
+      "persona_sin_casco_y_chaleco": 323,
+      "persona_sin_chaleco": 215
+    },
+    "by_severity": {
+      "alta": 117,
+      "critica": 323,
+      "media": 215
+    },
+    "by_period": {
+      "run_date": "2026-10-09",
+      "run_hour_utc": 21
+    }
+  },
+  "traceability": {
+    "weights": "models/best_model.pt",
+    "weights_sha256": "7c7cbfcb6c55c91f3524a21726f86b990acf04d19322c5bf27bb512adb0a077c",
+    "config_hash": "6bb983afa7e19a6739d08319b4f90f8751099678edc102c04b2163f32e3cb211",
+    "seed": 42,
+    "python": "3.13.5",
+    "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
+    "git_commit": "e699dfa2959545586c54b0e02c309efe21e4a8f4",
+    "torch": "2.14.1+cu126",
+    "ultralytics": "8.4.174",
+    "source": "src/data/kaggle_dataset/test/images",
+    "executed_at": "2026-10-09T16:41:35.090757",
+    "run_id": "20261009_164128_6bb983af",
+    "model_version": "1.0.0",
+    "decision_strategy": "hybrid",
+    "input_mode": "independent",
+    "resize_mode": "letterbox",
+    "imgsz": 640,
+    "run_started_at": "2026-10-09T21:41:35.090834+00:00"
+  }
+}
