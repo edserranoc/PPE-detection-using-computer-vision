@@ -1,0 +1,11 @@
+2026-10-14 12:19:08,498 INFO ppe.pipeline: Imágenes: 406 | fuentes: 406 | modo: independent | resize: letterbox | imgsz: 640
+2026-10-14 12:19:14,737 INFO ppe.pipeline: Procesadas 50/406
+2026-10-14 12:19:15,673 INFO ppe.pipeline: Procesadas 100/406
+2026-10-14 12:19:16,574 INFO ppe.pipeline: Procesadas 150/406
+2026-10-14 12:19:17,503 INFO ppe.pipeline: Procesadas 200/406
+2026-10-14 12:19:18,414 INFO ppe.pipeline: Procesadas 250/406
+2026-10-14 12:19:19,321 INFO ppe.pipeline: Procesadas 300/406
+2026-10-14 12:19:20,203 INFO ppe.pipeline: Procesadas 350/406
+2026-10-14 12:19:21,090 INFO ppe.pipeline: Procesadas 400/406
+2026-10-14 12:19:21,234 INFO ppe.pipeline: Listo: 406 frames, 2811 detecciones, 648 eventos, 0 fallidos.
+2026-10-14 12:19:21,244 INFO ppe.inference: Resultados en outputs/exp_estrategia_association

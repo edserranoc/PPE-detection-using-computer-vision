@@ -1,0 +1,5 @@
+2026-10-14 12:20:08,878 INFO ppe.pipeline: Imágenes: 100 | fuentes: 100 | modo: independent | resize: letterbox | imgsz: 640
+2026-10-14 12:20:12,819 INFO ppe.pipeline: Procesadas 50/100
+2026-10-14 12:20:13,649 INFO ppe.pipeline: Procesadas 100/100
+2026-10-14 12:20:13,679 INFO ppe.pipeline: Listo: 100 frames, 855 detecciones, 235 eventos, 0 fallidos.
+2026-10-14 12:20:13,682 INFO ppe.inference: Resultados en outputs/exp_res320_letterbox

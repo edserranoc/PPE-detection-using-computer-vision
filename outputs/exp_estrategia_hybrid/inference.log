@@ -1,0 +1,11 @@
+2026-10-14 12:19:50,039 INFO ppe.pipeline: Imágenes: 406 | fuentes: 406 | modo: independent | resize: letterbox | imgsz: 640
+2026-10-14 12:19:53,464 INFO ppe.pipeline: Procesadas 50/406
+2026-10-14 12:19:54,347 INFO ppe.pipeline: Procesadas 100/406
+2026-10-14 12:19:55,234 INFO ppe.pipeline: Procesadas 150/406
+2026-10-14 12:19:56,155 INFO ppe.pipeline: Procesadas 200/406
+2026-10-14 12:19:57,055 INFO ppe.pipeline: Procesadas 250/406
+2026-10-14 12:19:57,949 INFO ppe.pipeline: Procesadas 300/406
+2026-10-14 12:19:58,851 INFO ppe.pipeline: Procesadas 350/406
+2026-10-14 12:19:59,718 INFO ppe.pipeline: Procesadas 400/406
+2026-10-14 12:19:59,862 INFO ppe.pipeline: Listo: 406 frames, 2811 detecciones, 655 eventos, 0 fallidos.
+2026-10-14 12:19:59,869 INFO ppe.inference: Resultados en outputs/exp_estrategia_hybrid

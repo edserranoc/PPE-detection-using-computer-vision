@@ -1,3 +1,4 @@
+
 # Detección de EPP con visión artificial
 
 ---
@@ -22,19 +23,24 @@ docs/DECISIONS.md
 ```
 ppe-vision/
 ├── configs/        # train.yaml, inference.yaml, rules.yaml 
+├── data/			# ground_truth, resolution_tests
+├── docs/           # DECISIONS.md, reglas de negocio
+├── models/			# Best model.pt, model_metadata.json
+├── notebooks/		# Notebooks reports, script evaluation
+├── outputs/		# events, images_index,inference.log,metrics.json,predictions.json,run_config
+├── reports/		# EDA, metrics
+├── runs/			# yolov8n training with 20 and 2 epochs
 ├── src/
 │   ├── data/       # validación, EDA, splits, augmentations
-│   ├── ppe/
+│   ├── ppe/		# additional python scripts
 │   ├── train.py    # semilla, metadata, MLflow
 │   ├── eda.py
 │   ├── evaluate.py # P/R/F1, mAP, PR curve, confusión, FPS
-│   └── inference/  # pipeline, NMS/dedup, logging, errores por archivo 
+│   ├── build_ground_truth.py
+│   ├── evaluate_predictions.py
+│   └── inference/  # pipeline, NMS/dedup, logging, errores por archivo
 ├── tests/          # ROI, asociación, dedup, severidad
-├── docs/           # DECISIONS.md, reglas de negocio
-├── models/			# Best model.pt, model_metadata.json
-├── reports/		# EDA, metrics
-├── runs/			# yolov8n training with 20 and 2 epochs
-├── weights/	
+├── weights/
 ├── requirements.txt
 ├── LICENSE
 ├── .gitignore
@@ -49,8 +55,6 @@ Toda la configuración está separada del código. Cualquier valor se puede sobr
 python src/train.py     --set train.epochs=20 train.batch=8
 ```
 
-El archivo de Inference no se completó
-
 ```
 python src/inference.py --source <carpeta> --set thresholds.conf_default=0.4 preprocessing.resize_mode=resize
 python src/inference.py --source <carpeta> --set-rules decision.strategy=explicit
@@ -58,7 +62,9 @@ python src/inference.py --source <carpeta> --set-rules decision.strategy=explici
 
 Cada corrida de inferencia guarda la configuración efectiva y su hash en `outputs/<run_id>/run_config.yaml`.
 
-## `train.yaml`
+
+
+`train.yaml`
 
 | Clave                            | Descripción                                                                                                                |
 | -------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |

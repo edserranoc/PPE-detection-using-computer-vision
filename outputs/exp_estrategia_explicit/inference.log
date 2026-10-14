@@ -1,0 +1,11 @@
+2026-10-14 12:19:31,063 INFO ppe.pipeline: Imágenes: 406 | fuentes: 406 | modo: independent | resize: letterbox | imgsz: 640
+2026-10-14 12:19:34,987 INFO ppe.pipeline: Procesadas 50/406
+2026-10-14 12:19:35,908 INFO ppe.pipeline: Procesadas 100/406
+2026-10-14 12:19:36,816 INFO ppe.pipeline: Procesadas 150/406
+2026-10-14 12:19:37,743 INFO ppe.pipeline: Procesadas 200/406
+2026-10-14 12:19:38,706 INFO ppe.pipeline: Procesadas 250/406
+2026-10-14 12:19:39,615 INFO ppe.pipeline: Procesadas 300/406
+2026-10-14 12:19:40,495 INFO ppe.pipeline: Procesadas 350/406
+2026-10-14 12:19:41,365 INFO ppe.pipeline: Procesadas 400/406
+2026-10-14 12:19:41,505 INFO ppe.pipeline: Listo: 406 frames, 2811 detecciones, 586 eventos, 0 fallidos.
+2026-10-14 12:19:41,510 INFO ppe.inference: Resultados en outputs/exp_estrategia_explicit

@@ -124,13 +124,13 @@ def run_experiment(name: str, images_dir: Path, split_dir: Path, dataset_root: P
     """Inferencia + verdad terreno + evaluación para una configuración. Devuelve una fila de métricas."""
     py = sys.executable
     out, gt, ev = Path(f"outputs/exp_{name}"), Path(f"reports/experiments/{name}/gt"), Path(f"reports/experiments/{name}")
-    cmd = [py, "scripts/inference.py", "--source", images_dir, "--output", out, "--conf", conf, *(inference_args or [])]
+    cmd = [py, "src/inference.py", "--source", images_dir, "--output", out, "--conf", conf, *(inference_args or [])]
     if rules_args:
         cmd += ["--set-rules", *rules_args]
     run(cmd, tail=3)
-    run([py, "scripts/build_ground_truth.py", "--split-dir", split_dir, "--dataset-root", dataset_root,
+    run([py, "src/build_ground_truth.py", "--split-dir", split_dir, "--dataset-root", dataset_root,
          "--out", gt, "--derive-events"], tail=2)
-    run([py, "scripts/evaluate_predictions.py", "--predictions", out / "predictions.jsonl",
+    run([py, "src/evaluate_predictions.py", "--predictions", out / "predictions.jsonl",
          "--ground-truth", gt / "ground_truth.jsonl", "--events", out / "events.jsonl",
          "--ground-truth-events", gt / "ground_truth_events.jsonl", "--images-index", out / "images_index.jsonl",
          "--out", ev, "--conf", conf, "--error-images", 0], tail=3)

@@ -1,0 +1,417 @@
+{
+  "schema_version": "1.0",
+  "volume": {
+    "files_found": 100,
+    "files_processed": 100,
+    "files_failed": 0,
+    "videos": 0,
+    "frames": 100,
+    "detections": 877,
+    "events": 240
+  },
+  "performance": {
+    "total_seconds": 7.073,
+    "mean_ms_per_frame": 70.53,
+    "mean_inference_ms": 38.64,
+    "p95_inference_ms": 14.62,
+    "mean_read_preprocess_ms": 31.19,
+    "fps_end_to_end": 14.14,
+    "fps_inference_only": 25.88,
+    "failed_files": [],
+    "interrupted": false
+  },
+  "quality": {
+    "confidence_by_class": {
+      "helmet": {
+        "count": 150,
+        "mean": 0.6616,
+        "min": 0.2524,
+        "p10": 0.4069,
+        "p50": 0.6988,
+        "p90": 0.856,
+        "max": 0.9132
+      },
+      "no_helmet": {
+        "count": 141,
+        "mean": 0.5802,
+        "min": 0.2613,
+        "p10": 0.3164,
+        "p50": 0.613,
+        "p90": 0.8154,
+        "max": 0.9102
+      },
+      "no_vest": {
+        "count": 251,
+        "mean": 0.62,
+        "min": 0.2509,
+        "p10": 0.3551,
+        "p50": 0.6512,
+        "p90": 0.8074,
+        "max": 0.9886
+      },
+      "person": {
+        "count": 283,
+        "mean": 0.7481,
+        "min": 0.3502,
+        "p10": 0.5147,
+        "p50": 0.7872,
+        "p90": 0.8775,
+        "max": 0.9736
+      },
+      "vest": {
+        "count": 52,
+        "mean": 0.597,
+        "min": 0.2558,
+        "p10": 0.2966,
+        "p50": 0.6386,
+        "p90": 0.8248,
+        "max": 0.8572
+      }
+    },
+    "class_distribution": {
+      "helmet": {
+        "count": 150,
+        "pct": 17.1
+      },
+      "no_helmet": {
+        "count": 141,
+        "pct": 16.08
+      },
+      "no_vest": {
+        "count": 251,
+        "pct": 28.62
+      },
+      "person": {
+        "count": 283,
+        "pct": 32.27
+      },
+      "vest": {
+        "count": 52,
+        "pct": 5.93
+      }
+    },
+    "discarded": {
+      "below_threshold": 16,
+      "duplicate_detections_nms": 0
+    },
+    "images_without_detections": 0,
+    "events_suppressed_as_duplicates": {
+      "suppressed_track_switch": 7
+    },
+    "event_latency_seconds": {
+      "count": 240,
+      "mean": 0.0,
+      "min": 0.0,
+      "p10": 0.0,
+      "p50": 0.0,
+      "p90": 0.0,
+      "max": 0.0
+    },
+    "input_resolutions": {
+      "1920x1920": 100
+    }
+  },
+  "segmentation": {
+    "by_class": {
+      "person": 283,
+      "no_vest": 251,
+      "no_helmet": 141,
+      "vest": 52,
+      "helmet": 150
+    },
+    "by_camera": {
+      "CAM_01": {
+        "frames": 100,
+        "detections": 877,
+        "events": 240
+      }
+    },
+    "by_source": {
+      "006463_jpg.rf.54f788c95e6ecba25f010a1ad84aafab": {
+        "frames": 1,
+        "detections": 27,
+        "events": 9
+      },
+      "001963_jpg.rf.50a3e17ab149bbbf196aa5b103166994": {
+        "frames": 1,
+        "detections": 24,
+        "events": 3
+      },
+      "63_jpg.rf.837e5806e3e08682ce56aac923870019": {
+        "frames": 1,
+        "detections": 21,
+        "events": 6
+      },
+      "IMG_2239_PNG_jpg.rf.4ce57e0c2451eecaade0d60dd94234db": {
+        "frames": 1,
+        "detections": 21,
+        "events": 6
+      },
+      "IMG_2440_PNG_jpg.rf.209567c6100061384e19eec846e25238": {
+        "frames": 1,
+        "detections": 20,
+        "events": 6
+      },
+      "006672_jpg.rf.267adc307dcc18976c721f14e668f4d8": {
+        "frames": 1,
+        "detections": 19,
+        "events": 0
+      },
+      "IMG_2206_PNG_jpg.rf.bc9fff10de5115d474c8a9b54f6cfd40": {
+        "frames": 1,
+        "detections": 19,
+        "events": 5
+      },
+      "02044_jpg.rf.56227843caebad93fc3e9a55b2905e72": {
+        "frames": 1,
+        "detections": 17,
+        "events": 1
+      },
+      "IMG_2291_PNG_jpg.rf.691242b510033deae24bd67903db817c": {
+        "frames": 1,
+        "detections": 17,
+        "events": 6
+      },
+      "001187_jpg.rf.2b85dd8cb510fe8afeb72f78b5ec92ce": {
+        "frames": 1,
+        "detections": 16,
+        "events": 5
+      },
+      "004063_jpg.rf.74ed75bae4019b1d0b37d02a5453169b": {
+        "frames": 1,
+        "detections": 16,
+        "events": 5
+      },
+      "IMG_2238_PNG_jpg.rf.f25748c013cd6a166e3921af70bf7fb4": {
+        "frames": 1,
+        "detections": 16,
+        "events": 4
+      },
+      "000010_jpg.rf.364564a48732cc7d3689f88cd1281a5b": {
+        "frames": 1,
+        "detections": 15,
+        "events": 1
+      },
+      "000111_jpg.rf.cabc7dc6bad823352aeda95ac917bf1f": {
+        "frames": 1,
+        "detections": 15,
+        "events": 5
+      },
+      "147_jpg.rf.b364ea4666fd9207c840477ed05052ce": {
+        "frames": 1,
+        "detections": 15,
+        "events": 4
+      },
+      "172_jpg.rf.603239c49cc78b01feec6156af0153d4": {
+        "frames": 1,
+        "detections": 15,
+        "events": 4
+      },
+      "001597_jpg.rf.79e3484a41f8fc933c28bee560594e16": {
+        "frames": 1,
+        "detections": 15,
+        "events": 5
+      },
+      "001800_jpg.rf.3bb4ba5ae6f71a034fd68d5362d4c90a": {
+        "frames": 1,
+        "detections": 15,
+        "events": 3
+      },
+      "IMG_2106_PNG_jpg.rf.1536474a9c9f90d6ce94f311c76b6c0d": {
+        "frames": 1,
+        "detections": 15,
+        "events": 5
+      },
+      "IMG_2412_PNG_jpg.rf.48c8ef66999d98d3228669ea878ef95d": {
+        "frames": 1,
+        "detections": 15,
+        "events": 5
+      },
+      "005239_jpg.rf.0e7d4e56023f315c9a6f2d01db828b48": {
+        "frames": 1,
+        "detections": 14,
+        "events": 5
+      },
+      "IMG_2186_PNG_jpg.rf.c3256306b6d8dc9acb0a86e546bd277f": {
+        "frames": 1,
+        "detections": 14,
+        "events": 5
+      },
+      "IMG_2426_PNG_jpg.rf.1c833a4f22d10f689d3454d4f4a03219": {
+        "frames": 1,
+        "detections": 14,
+        "events": 4
+      },
+      "000003_jpg.rf.2c3fe5f104654f46f367b041f5e42814": {
+        "frames": 1,
+        "detections": 13,
+        "events": 4
+      },
+      "000659_jpg.rf.150c8c09d04d362dc837f492e818bb54": {
+        "frames": 1,
+        "detections": 13,
+        "events": 4
+      },
+      "001281_jpg.rf.c81aac36011d8d8f788ad5200a16d88c": {
+        "frames": 1,
+        "detections": 12,
+        "events": 4
+      },
+      "02404_jpg.rf.0c46506ff0a79c8ee81051d5a1c21d33": {
+        "frames": 1,
+        "detections": 12,
+        "events": 2
+      },
+      "IMG_1648_PNG_jpg.rf.111d513457ae025c52d24b022b5f6587": {
+        "frames": 1,
+        "detections": 12,
+        "events": 4
+      },
+      "IMG_1715_PNG_jpg.rf.96513dfd0ec987b361ada331f1a20109": {
+        "frames": 1,
+        "detections": 12,
+        "events": 3
+      },
+      "IMG_2314_PNG_jpg.rf.faaec40f0ff03f91a7ea7d8383a1f5f1": {
+        "frames": 1,
+        "detections": 12,
+        "events": 5
+      },
+      "IMG_2483_PNG_jpg.rf.c49df934b69bac89f515a2c5d20a9006": {
+        "frames": 1,
+        "detections": 12,
+        "events": 4
+      },
+      "IMG_2080_PNG_jpg.rf.ef0d5e39a2473d5cba54381a71ed1e93": {
+        "frames": 1,
+        "detections": 11,
+        "events": 4
+      },
+      "20_jpg.rf.9faf150d3acf2be5068d1ddd95f96436": {
+        "frames": 1,
+        "detections": 10,
+        "events": 3
+      },
+      "25_jpg.rf.df991a0baa33157bac96bc466c8be94f": {
+        "frames": 1,
+        "detections": 10,
+        "events": 3
+      },
+      "000103_jpg.rf.5d253de077a436003ed4259ec418f85d": {
+        "frames": 1,
+        "detections": 10,
+        "events": 3
+      },
+      "00596_jpg.rf.5219ce448ff1da6163b5487138d1fdc3": {
+        "frames": 1,
+        "detections": 10,
+        "events": 3
+      },
+      "002551_jpg.rf.c0a81ec9d7faed8514c3e3472863c014": {
+        "frames": 1,
+        "detections": 10,
+        "events": 3
+      },
+      "005100_jpg.rf.625e484e8ff9e996f20cdd48c86629a6": {
+        "frames": 1,
+        "detections": 10,
+        "events": 4
+      },
+      "IMG_2552_PNG_jpg.rf.581d1c5cbdb4f3a675485ae0a4c112f2": {
+        "frames": 1,
+        "detections": 10,
+        "events": 3
+      },
+      "112_jpg.rf.befdc675fe2065349ec533af717125c2": {
+        "frames": 1,
+        "detections": 9,
+        "events": 2
+      },
+      "134_jpg.rf.9b23c3ba788c53374145dbda3f9a0e28": {
+        "frames": 1,
+        "detections": 9,
+        "events": 3
+      },
+      "00542_jpg.rf.3a6b068c37fd446b59237f7eb21aa39d": {
+        "frames": 1,
+        "detections": 9,
+        "events": 3
+      },
+      "004763_jpg.rf.8994cb4adcd6a973cf5ca88be4a03c16": {
+        "frames": 1,
+        "detections": 9,
+        "events": 3
+      },
+      "IMG_2363_PNG_jpg.rf.7ef246a1d7786f9521f9fa4b56217511": {
+        "frames": 1,
+        "detections": 9,
+        "events": 3
+      },
+      "00000383_jpg.rf.c80f446ee87fcbe53ea69268d2a86cc0": {
+        "frames": 1,
+        "detections": 8,
+        "events": 1
+      },
+      "IMG_1827_PNG_jpg.rf.f6f96a0cd21d17f28dd04ab3b7af9818": {
+        "frames": 1,
+        "detections": 8,
+        "events": 2
+      },
+      "IMG_2382_PNG_jpg.rf.c98404a1fa219f3df2bba6406bd66c6e": {
+        "frames": 1,
+        "detections": 8,
+        "events": 3
+      },
+      "000618_jpg.rf.9d62104c6da727cb3d281253ebdcca8f": {
+        "frames": 1,
+        "detections": 7,
+        "events": 0
+      },
+      "IMG_2437_PNG_jpg.rf.d2ec3572af4eb423d103f5c08e0b1e38": {
+        "frames": 1,
+        "detections": 7,
+        "events": 3
+      },
+      "0_jpg.rf.ca1f126fcce57f271d260a158f0c40b4": {
+        "frames": 1,
+        "detections": 6,
+        "events": 2
+      }
+    },
+    "n_sources": 100,
+    "by_event_type": {
+      "persona_sin_casco_y_chaleco": 145,
+      "persona_sin_chaleco": 90,
+      "persona_sin_casco": 5
+    },
+    "by_severity": {
+      "critica": 145,
+      "media": 90,
+      "alta": 5
+    },
+    "by_period": {
+      "run_date": "2026-10-14",
+      "run_hour_utc": 17
+    }
+  },
+  "traceability": {
+    "weights": "models/best_model.pt",
+    "weights_sha256": "7c7cbfcb6c55c91f3524a21726f86b990acf04d19322c5bf27bb512adb0a077c",
+    "config_hash": "8f5bc2a272a6ff1fade837f93f9cae9114bd5591b00683e2d0dc265879c206bc",
+    "seed": 42,
+    "python": "3.13.5",
+    "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
+    "git_commit": "a130aeacaef94c9064fe107739a702740fae445b",
+    "torch": "2.14.1+cu126",
+    "ultralytics": "8.4.174",
+    "source": "data/resolution_tests/1920/test/images",
+    "executed_at": "2026-10-14T12:22:15.209491",
+    "run_id": "20261014_122212_8f5bc2a2",
+    "model_version": "1.0.0",
+    "decision_strategy": "hybrid",
+    "input_mode": "independent",
+    "resize_mode": "resize",
+    "imgsz": 640,
+    "run_started_at": "2026-10-14T17:22:15.209577+00:00"
+  }
+}

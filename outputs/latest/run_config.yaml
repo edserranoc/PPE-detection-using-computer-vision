@@ -20,7 +20,7 @@ inference:
     - .webp
     min_side: 16
   preprocessing:
-    resize_mode: letterbox
+    resize_mode: none
     pad_value: 114
   thresholds:
     conf_default: 0.25
@@ -99,19 +99,19 @@ rules:
       sin_casco_y_chaleco:
         event_type: persona_sin_casco_y_chaleco
         severity: critica
-config_hash: 6bb983afa7e19a6739d08319b4f90f8751099678edc102c04b2163f32e3cb211
+config_hash: 64c806cbd4d840131dad9bab1520f8c885b2b802fc20d504682e38858f51121d
 cli:
-  source: src/data/kaggle_dataset/test/images
+  source: data/resolution_tests/1920/test/images
   config: configs/inference.yaml
   rules: configs/rules.yaml
   weights: null
-  output: null
+  output: outputs/exp_res1920_none
   mode: null
   camera_id: null
   fps: null
-  conf: null
+  conf: 0.25
   imgsz: null
-  resize_mode: null
+  resize_mode: none
   device: null
   save_annotated: false
   set: []

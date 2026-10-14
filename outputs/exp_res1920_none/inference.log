@@ -1,0 +1,5 @@
+2026-10-14 12:22:28,529 INFO ppe.pipeline: Imágenes: 100 | fuentes: 100 | modo: independent | resize: none | imgsz: 640
+2026-10-14 12:22:33,063 INFO ppe.pipeline: Procesadas 50/100
+2026-10-14 12:22:35,160 INFO ppe.pipeline: Procesadas 100/100
+2026-10-14 12:22:35,208 INFO ppe.pipeline: Listo: 100 frames, 880 detecciones, 238 eventos, 0 fallidos.
+2026-10-14 12:22:35,211 INFO ppe.inference: Resultados en outputs/exp_res1920_none

@@ -1,24 +1,28 @@
-# Detección de EPP con visión artificial: reporte técnico (SIN COMPLETAR)
+# Detección de EPP con visión artificial: reporte técnico
 
-> Plantilla para completar. 
+> Documento en elaboración: las secciones 0 a 4 ya incluyen los resultados del EDA, del entrenamiento y de la evaluación offline; faltan las de inferencia, reglas y desempeño de la solución. Cada sección indica el archivo del que salen los números. Decisiones ya tomadas en el código: [`DECISIONS.md`](DECISIONS.md). Dataset: [`DATASET.md`](DATASET.md).
 
 **Autor:** Edison Serrano
 **Versión del modelo:** 1.0.0
-**Fecha:** 09/10/2026
+**Fecha:** 
 
 ---
 
 ## 0. Resumen ejecutivo
 
-_<5–8 líneas: problema, enfoque, modelo elegido, métricas clave (mAP@0.5:0.95, F1 de eventos), limitaciones principales.>_
+Se entrenó un detector YOLOv8n (fine-tuning desde COCO, 20 épocas) sobre el dataset PPE de Kaggle (4 060 imágenes, 30 064 objetos, 5 clases: `person`, `helmet`, `no_helmet`, `vest`, `no_vest`). En la partición de prueba alcanza mAP@0.5 = 0.865 y mAP@0.5:0.95 = 0.558 (F1 global 0.849), con unos 73 FPS en preprocesado + inferencia + NMS. Las clases de ausencia de EPP (`no_helmet`, `no_vest`) son las más difíciles (AP@0.5 de 0.79 y 0.83), justo las que alimentan los eventos de severidad alta y crítica. El EDA no encontró problemas de integridad, pero sí **posible fuga entre particiones** (72 imágenes de val/test, el 8.9 %, tienen un gemelo casi idéntico en train), por lo que las métricas de val/test pueden ser optimistas. El entrenamiento **no ha convergido** (el mejor checkpoint es el de la última época y el mAP@0.5:0.95 sigue subiendo).
 
-| Indicador                          | Valor  |
-| ---------------------------------- | ------ |
-| mAP@0.5 (test)                     | _<>_ |
-| mAP@0.5:0.95 (test)                | _<>_ |
-| F1 de predicciones vs ground truth | _<>_ |
-| F1 de eventos                      | _<>_ |
-| FPS de inferencia (hardware)       | _<>_ |
+_<Añadir 2–3 líneas con el desempeño de las predicciones y de los eventos (secciones 6 y 8) cuando estén evaluados.>_
+
+| Indicador                                                 | Valor                                     |
+| --------------------------------------------------------- | ----------------------------------------- |
+| mAP@0.5 (test, offline)                                   | 0.865                                     |
+| mAP@0.5:0.95 (test, offline)                              | 0.558                                     |
+| P / R / F1 global (test, offline)                         | 0.899 / 0.804 / 0.849                     |
+| FPS preprocesado + inferencia + NMS (lote de Ultralytics) | 72.7 (98.8 sólo inferencia) — hardware: |
+| F1 de predicciones vs ground truth (pipeline)             | _<>_                                    |
+| F1 de eventos                                             | _<>_                                    |
+| FPS del pipeline completo                                 | _<>_                                    |
 
 ---
 
@@ -30,82 +34,169 @@ _<5–8 líneas: problema, enfoque, modelo elegido, métricas clave (mAP@0.5:0.9
 
 ## 2. Datos
 
-> **Evidencia:** `reports/eda/` (generado por `python scripts/eda.py --root src/data/kaggle_dataset --out reports/eda`). Procedencia en `docs/DATASET.md`.
+> **Evidencia:** `reports/eda/dataset_report.json` y figuras en `reports/eda/` (`python scripts/eda.py --root src/data/kaggle_dataset --out reports/eda`).
 
 ### 2.1 Procedencia
 
-- Dataset(s): nombre, URL, licencia, versión, fecha de descarga.
-- Videos de inferencia: fuente, duración, cámara simulada (`CAM_01`, …).
-- Ground truth propio: cuántos frames, quién etiquetó, herramienta.
+| Campo    | Valor                                                                              |
+| -------- | ---------------------------------------------------------------------------------- |
+| Dataset  | Personal Protective Equipment (PPE) Dataset, Kaggle (`ndomalau`)                 |
+| URL      | https://www.kaggle.com/datasets/ndomalau/personal-protective-equipment-ppe-dataset |
+| Formato  | YOLO, exportación tipo Roboflow (nombres`…_jpg.rf.<hash>.jpg`)                 |
+| Tamaño  | 4 060 imágenes · 30 064 objetos · 5 clases                                      |
+| Licencia | _Attribution 4.0 International (CC BY 4.0)<verificar en Kaggle></verificar>_     |
 
 ### 2.2 Validación del dataset (`dataset_report.json`)
 
-| Chequeo                                   | Resultado |
-| ----------------------------------------- | --------- |
-| Imágenes corruptas / ilegibles           | _<>_    |
-| Duplicados (hash perceptual)              | _<>_    |
-| Imagen sin etiqueta / etiqueta sin imagen | _<>_    |
-| Anotaciones vacías                       | _<>_    |
-| Cajas fuera de límites                   | _<>_    |
-| Clases inconsistentes                     | _<>_    |
+| Chequeo                                                                              | train                | val   | test  |
+| ------------------------------------------------------------------------------------ | -------------------- | ----- | ----- |
+| Imágenes corruptas o ilegibles                                                      | 0                    | 0     | 0     |
+| Imágenes sin etiqueta / etiquetas huérfanas                                        | 0 / 0                | 0 / 0 | 0 / 0 |
+| Anotaciones vacías                                                                  | 0                    | 0     | 0     |
+| Cajas fuera de límites / degeneradas / clases fuera de rango / líneas mal formadas | 0                    | 0     | 0     |
+| Duplicados exactos (md5)                                                             | 0 en todo el dataset |       |       |
+
+El dataset está limpio a nivel de archivos y etiquetas. No hay imágenes sin objetos (fondo): todas las imágenes tienen al menos una anotación.
 
 ### 2.3 Análisis exploratorio
 
-- Imágenes por partición, objetos por clase, resoluciones, desbalance.
-- Figuras: `reports/eda/*.png`.
-- Hallazgos relevantes y cómo se mitigan.
+| Partición | Imágenes | %    | Objetos | Objetos/imagen (media · mediana · p95 · máx) | Objetos pequeños* |
+| ---------- | --------- | ---- | ------- | ------------------------------------------------ | ------------------ |
+| train      | 3 248     | 80 % | 24 184  | 7.4 · 6 · 18 · 187                            | 21.7 %             |
+| val        | 406       | 10 % | 3 095   | 7.6 · 6 · 18 · 55                             | 17.2 %             |
+| test       | 406       | 10 % | 2 785   | 6.9 · 6 · 18 · 63                             | 20.2 %             |
 
-### 2.4 Particiones
+\* Objeto menor de 32×32 px a 640×640. Todas las imágenes miden 640×640 (una sola resolución).
 
-- Estrategia (por fuente/video para evitar fuga), proporciones, semilla.
-- Verificación de ausencia de fuga (duplicados entre particiones = 0).
+| Clase     | train | val   | test | Total  | % del total |
+| --------- | ----- | ----- | ---- | ------ | ----------- |
+| person    | 8 259 | 1 042 | 954  | 10 255 | 34.1 %      |
+| no_vest   | 4 912 | 649   | 513  | 6 074  | 20.2 %      |
+| helmet    | 4 068 | 531   | 529  | 5 128  | 17.1 %      |
+| no_helmet | 3 993 | 523   | 393  | 4 909  | 16.3 %      |
+| vest      | 2 952 | 350   | 396  | 3 698  | 12.3 %      |
+
+Figuras: `reports/eda/objects_per_class.png`, `bbox_area_per_class.png`, `objects_per_image.png`, `box_centers_heatmap.png`, `resolutions.png`, `samples_with_boxes.png`.
+
+Hallazgos:
+
+- **Desbalance leve:** razón máximo/mínimo de 2.8:1 (`person` frente a `vest`). No requiere sobremuestreo, pero conviene reportar las métricas por clase.
+- **Objetos pequeños:** entre el 17 % y el 22 % de los objetos miden menos de 32×32 px (el área mediana de una caja es el 1.5 % de la imagen). Los cascos son los más afectados; sube el riesgo de omisiones en imágenes de mayor resolución reescaladas.
+- **Escenas concurridas:** la mediana es de 6 objetos por imagen, pero hay imágenes con hasta 187 (train). Esto exige cuidar el límite de detecciones (`max_det`) y el NMS.
+- **Una sola resolución (640×640):** el dataset no permite medir por sí solo la robustez a otras resoluciones; por eso se evalúa con versiones reescaladas del conjunto de prueba (sección 5.1).
+- **Las clases `no_helmet` y `no_vest` son explícitas.** Falta comprobar con el notebook 01 (sección 7) qué fracción de las personas tiene su cabeza/torso anotados, porque eso decide la estrategia de decisión.
+
+### 2.4 Particiones y fuga de información
+
+El dataset llega con una partición 80/10/10 (3 248 / 406 / 406 imágenes). El EDA encontró que **no es independiente**:
+
+| Chequeo                                                        | Resultado                                                   |
+| -------------------------------------------------------------- | ----------------------------------------------------------- |
+| Duplicados exactos entre particiones                           | 0                                                           |
+| Misma imagen fuente (patrón`.rf.`) en particiones distintas | 24 grupos                                                   |
+| Casi-duplicados (dHash, Hamming ≤ 2)                          | 88 grupos (222 imágenes), de los que 52 cruzan particiones |
+| Imágenes de val/test con un gemelo en train                   | **72 de 812 (8.9 %)**                                 |
+
+Los nombres (por ejemplo `IMG_3103_mp4-17`) indican que muchas imágenes son **fotogramas extraídos de videos**, por lo que fotogramas vecinos del mismo video caen en particiones distintas.
+
+- **Implicación:** las métricas de val y test pueden estar infladas, y el test es menos independiente de lo que parece.
+- **Decisión:** se conserva la partición original del dataset y se cuantifica el efecto: se reportan las métricas sobre todo el test y también excluyendo las imágenes con gemelo en train (`reports/eda/leakage_images.csv`, `evaluate_predictions.py --exclude-images`). _<Resultado: métricas con y sin gemelos: …>_
+- **Alternativa descartada por costo:** volver a dividir agrupando por video/imagen fuente (exige reentrenar).
 
 ### 2.5 Aumentos de datos
 
-| Aumento | Parámetro | Justificación |
-| ------- | ---------- | -------------- |
-| _<>_  | _<>_     | _<>_         |
+| Aumento                           | Valor                                         | Justificación                                                           |
+| --------------------------------- | --------------------------------------------- | ------------------------------------------------------------------------ |
+| HSV (tono / saturación / brillo) | 0.015 / 0.7 / 0.4                             | Cubre cambios de iluminación y de cámara                               |
+| Volteo horizontal                 | 0.5                                           | Las escenas son simétricas                                              |
+| Volteo vertical                   | 0                                             | Un casco no aparece bajo los pies; rompería la asociación cabeza/torso |
+| Rotación / cizalla               | 0 / 0                                         | Personas de pie y cámaras fijas                                         |
+| Traslación / escala              | 0.1 / 0.5                                     | Variación de posición y de distancia a la cámara                      |
+| Mosaic                            | 1.0 (se desactiva en las últimas 10 épocas) | Más contexto y más objetos pequeños por imagen                        |
+| MixUp                             | 0                                             | Mezclar imágenes confunde las clases de ausencia                        |
 
 ## 3. Modelo y entrenamiento
 
 ### 3.1 Decisiones técnicas
 
-| Decisión    | Alternativas                                                                                     | Elección y razón                                                         |
-| ------------ | ------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------- |
-| Arquitectura | YOLOv8n, RT-DETR, RF-DETR, Faster R-CNN                                                          | YOLOv8n (ligero y rápido);                                                |
-| Clases       | 5 clases del dataset (helmet, no_helmet, no_vest, person, vest) vs. 3 clases + inferir ausencias | Se conservan las 5; la estrategia de decisión se compara en la sección 6 |
-| Tracker      | ByteTrack, BoT-SORT                                                                              | _<>_                                                                     |
-| Licencia     | AGPL vs. Apache 2.0                                                                              | _<>_                                                                     |
+| Decisión       | Alternativas                            | Elección y razón                                                                                                                       |
+| --------------- | --------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| Arquitectura    | YOLOv8n, RT-DETR, RF-DETR, Faster R-CNN | YOLOv8n: ligero (≈10 ms por imagen), fácil de reproducir y desplegar. Licencia AGPL-3.0 de Ultralytics: revisar si el uso es comercial |
+| Pesos iniciales | Aleatorios, COCO                        | `yolov8n.pt` preentrenado en COCO (ya conoce la clase persona)                                                                         |
+| Clases          | 5 clases vs 3 + inferir ausencias       | Se conservan las 5; la estrategia de decisión se decide con el experimento de la sección 6.2                                           |
+| Épocas         | 20 vs 100                               | 20 por costo de cómputo (≈58 min);**insuficiente** (ver 3.3)                                                                     |
 
-### 3.2 Configuración (`model_metadata.json`)
+### 3.2 Configuración (`runs/train/yolov8n/args.yaml`)
 
-| Parámetro                         | Valor  |
-| ---------------------------------- | ------ |
-| Pesos iniciales                    | _<>_ |
-| Versión del dataset               | _<>_ |
-| Tamaño de entrada                 | _<>_ |
-| Épocas / batch size               | _<>_ |
-| Optimizador / LR                   | _<>_ |
-| Semilla                            | _<>_ |
-| Hardware / tiempo de entrenamiento | _<>_ |
+| Parámetro               | Valor                                                                                                                                              |
+| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Modelo / pesos iniciales | YOLOv8n /`yolov8n.pt` (COCO)                                                                                                                     |
+| Versión del dataset     | 4 060 imágenes (3 248 / 406 / 406); huella sha256:_<no registrada; ejecutar una versión nueva de `train.py` guarda `model_metadata.json`>_ |
+| Tamaño de entrada       | 640                                                                                                                                                |
+| Épocas / paciencia      | 20 / 20                                                                                                                                            |
+| Batch                    | 8                                                                                                                                                  |
+| Optimizador / lr0 / lrf  | AdamW / 0.001 / 0.01                                                                                                                               |
+| Weight decay / warmup    | 0.0005 / 3 épocas                                                                                                                                 |
+| Precisión mixta (AMP)   | sí                                                                                                                                                |
+| Semilla / determinista   | 42 / sí                                                                                                                                           |
+| Tiempo de entrenamiento  | 3 471 s (57.9 min; 174 s por época)                                                                                                               |
+| Hardware                 | _<completar: GPU/CPU, RAM>_                                                                                                                      |
+| Versiones                | _<ultralytics, torch, python>_                                                                                                                   |
 
-### 3.3 Selección del mejor checkpoint
+### 3.3 Selección del mejor checkpoint y curvas
 
-- Criterio (p. ej., mAP@0.5:0.95 en validación, desempate por recall de `persona`).
-- Trazabilidad de experimentos (MLflow): tabla de corridas comparadas.
+- **Criterio:** `fitness = 0.1·mAP@0.5 + 0.9·mAP@0.5:0.95` en validación, evaluado al final de cada época (criterio de Ultralytics), porque premia la calidad de localización que necesita la asociación persona↔EPP.
+- **Resultado:** el mejor checkpoint es el de la **época 20** (la última): mAP@0.5:0.95 = 0.568 en validación. La paciencia (20) nunca se activó.
+
+| Época             | 1     | 5     | 10    | 15    | 20    |
+| ------------------ | ----- | ----- | ----- | ----- | ----- |
+| mAP@0.5 (val)      | 0.656 | 0.782 | 0.853 | 0.879 | 0.894 |
+| mAP@0.5:0.95 (val) | 0.343 | 0.435 | 0.514 | 0.548 | 0.568 |
+
+- **Sin sobreajuste:** pérdida de caja final train/val de 1.143 / 1.176 (diferencia de 0.03), ambas decrecientes.
+- **Sin converger:** el mAP@0.5:0.95 ganó +0.008 en las últimas 3 épocas. Entrenar más épocas (50–100) debería mejorar sobre todo `no_helmet` y `no_vest`. _<Si se reentrena, anotar aquí la nueva versión y sus métricas.>_
+- Gráfica: `runs/train/yolov8n/results.png`. 
 
 ## 4. Evaluación offline (`metrics.json`)
 
-> **Evidencia:** `reports/offline/metrics.json`, `reports/offline/confusion_matrix.png`, `reports/offline/precision_recall_curve.png` (generados por `python scripts/train.py`); `models/model_metadata.json`.
+> **Evidencia:** `reports/offline/metrics_val.json`, `metrics_test.json` (generados por `scripts/train.py`); gráficas de Ultralytics en `runs/train/yolov8n/` (`eval_test/confusion_matrix.png`, `BoxPR_curve.png`, `BoxF1_curve.png`).
 
-- Tabla global y por clase: Precision, Recall, F1, AP@0.5, AP@0.5:0.95.
-- Figuras: `confusion_matrix.png`, `precision_recall_curve.png`.
-- Velocidad: tiempo medio de inferencia (ms) y FPS.
-- **Errores comentados**
+**Cómo leer las cifras:** Ultralytics evalúa con `conf = 0.001`; los mAP usan todas las detecciones, y precision/recall/F1 corresponden al umbral de confianza que maximiza F1 (promedio entre clases). No son las cifras del umbral de operación del pipeline (`configs/inference.yaml`), que se miden en la sección 8.
 
-| Imagen | Tipo (FP/FN) | Clase  | Causa probable | Mejora propuesta |
-| ------ | ------------ | ------ | -------------- | ---------------- |
-| _<>_ | _<>_       | _<>_ | _<>_         | _<>_           |
+| Partición     | Precision       | Recall          | F1              | mAP@0.5         | mAP@0.5:0.95    |
+| -------------- | --------------- | --------------- | --------------- | --------------- | --------------- |
+| val            | 0.903           | 0.833           | 0.867           | 0.897           | 0.566           |
+| **test** | **0.899** | **0.804** | **0.849** | **0.865** | **0.558** |
+
+Por clase en **test** (entre paréntesis, val):
+
+| Clase     | Precision     | Recall        | F1            | AP@0.5        | AP@0.5:0.95   |
+| --------- | ------------- | ------------- | ------------- | ------------- | ------------- |
+| person    | 0.924 (0.902) | 0.854 (0.888) | 0.888 (0.895) | 0.894 (0.936) | 0.669 (0.651) |
+| vest      | 0.946 (0.954) | 0.846 (0.885) | 0.893 (0.918) | 0.922 (0.945) | 0.637 (0.666) |
+| helmet    | 0.916 (0.936) | 0.828 (0.814) | 0.870 (0.870) | 0.888 (0.901) | 0.559 (0.566) |
+| no_vest   | 0.849 (0.856) | 0.769 (0.815) | 0.807 (0.835) | 0.829 (0.864) | 0.486 (0.471) |
+| no_helmet | 0.861 (0.867) | 0.723 (0.763) | 0.786 (0.812) | 0.790 (0.837) | 0.440 (0.475) |
+
+**Velocidad** (lote de Ultralytics, hardware: ):
+
+| Etapa               | val (ms) | test (ms)                              |
+| ------------------- | -------- | -------------------------------------- |
+| Preprocesado        | 1.23     | 1.13                                   |
+| Inferencia          | 10.45    | 10.12                                  |
+| Postprocesado (NMS) | 2.32     | 2.49                                   |
+| **Total**     | 14.00    | **13.75**                        |
+| FPS                 | 71.4     | **72.7** (98.8 sólo inferencia) |
+
+No incluye lectura de disco, reglas de negocio ni escritura de JSONL; el FPS del pipeline completo sale de `outputs/latest/metrics.json`.
+
+**Observaciones:**
+
+1. **Las clases de ausencia son las más débiles:** `no_helmet` (AP@0.5 0.79, recall 0.72) y `no_vest` (0.83, recall 0.77), frente a 0.89–0.92 de `person`, `helmet` y `vest`. El recall de `no_helmet` implica que alrededor de 1 de cada 4 cabezas sin casco no se detecta, y esas son las que generan eventos de severidad alta.
+2. **Test por debajo de val** en todas las clases salvo en AP@0.5:0.95 de `person` y `no_vest` (mAP@0.5: 0.865 frente a 0.897). Val se usa para elegir el checkpoint y comparte gemelos con train, lo que lo vuelve más optimista; la mayor caída es en `no_helmet` (−0.047 de AP@0.5) y `person` (−0.042).
+3. **Localización mejorable:** la brecha entre mAP@0.5 (0.865) y mAP@0.5:0.95 (0.558) indica cajas poco ajustadas, coherente con un modelo pequeño y sin converger; afecta la asociación por intersección sobre el área del EPP.
+4. **Falta decidir el umbral de operación** con la curva F1 por clase (`BoxF1_curve.png`). 
+5. **Matriz de confusión y curva PR:** _<insertar `confusion_matrix.png` y `BoxPR_curve.png` y comentar qué clases se confunden entre sí (p. ej. `helmet` ↔ `no_helmet`).>_
 
 ## 5. Pipeline de inferencia
 
@@ -249,10 +340,14 @@ pytest -q
 
 ## 11. Limitaciones, riesgos y trabajo futuro
 
-- Tamaño y sesgo del ground truth.
-- Pocas cámaras / sesgo de dominio (iluminación, ángulo, distancia).
-- Oclusiones, EPP de colores atípicos, cambios de ID del tracker.
-- Mejoras: más datos, reentrenamiento con el nuevo ciclo, detección de deriva, despliegue.
+- **Fuga entre particiones:** 8.9 % de las imágenes de val/test tienen un gemelo en train (fotogramas de los mismos videos); las métricas son optimistas. Mitigación: reportar con y sin esas imágenes; trabajo futuro: re-dividir por video.
+- **Entrenamiento corto (20 épocas):** el modelo no ha convergido; las clases `no_helmet` y `no_vest` aún tienen margen.
+- **Una sola resolución en el dataset (640×640):** la robustez a otras resoluciones se mide con versiones reescaladas del test (sección 5.1), no con datos reales de otra cámara.
+- **Sesgo de dominio:** _<escenas, ángulos, iluminación y cámaras no representados>_.
+- **Métricas offline en el umbral que maximiza F1:** no equivalen a las del umbral de operación.
+- **Verdad terreno de eventos derivada de las anotaciones**, no revisada por una persona independiente.
+- Hardware, versiones de librerías y huella del dataset no quedaron registrados en el primer entrenamiento (la versión actual de `train.py` ya los guarda).
+- Trabajo futuro: más épocas, `imgsz` mayor para objetos pequeños, modelo mayor (YOLOv8s), tracker con re-identificación, calibración de umbrales por clase.
 
 ## 12. Estructura de la entrega (.zip)
 
