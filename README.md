@@ -71,7 +71,7 @@ Cada corrida de inferencia guarda la configuración efectiva y su hash en `outpu
 | `eval.conf`, `eval.iou`      | Umbrales de la evaluación de Ultralytics (conf bajo para curvas PR completas)                                              |
 | `tracking.mlflow`              | Activa MLflow (`pip install mlflow`)                                                                                      |
 
-## `inference.yaml` (No se implementó)
+## `inference.yaml`
 
 | Clave                                                   | Descripción                                                                              |
 | ------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
@@ -84,7 +84,7 @@ Cada corrida de inferencia guarda la configuración efectiva y su hash en `outpu
 | `output.save_annotated`, `output.annotate`          | Imágenes anotadas (`events` o `all`)                                                 |
 | `output.mirror_latest`                                | Copia los resultados a`outputs/latest/`                                                 |
 
-## `rules.yaml`    (No se implementó)
+## `rules.yaml`   
 
 | Clave                                                                | Descripción                                                                                    |
 | -------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
